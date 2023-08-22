@@ -1,3 +1,15 @@
+<span class="test">
+    <select 
+    #selectedLang
+    (change)="switchLang(selectedLang.value)">
+    <option *ngFor="let lang of translate.getLangs()"
+    [value]="lang"
+    [selected]="lang === translate.currentLang">
+    {{lang}}
+    </option>
+</select>
+</span>
+
 <app-sidenav (oonToggleSideNav)="oonToggleSideNav($event)"></app-sidenav>
 <app-body> 
     [collapsed]="isSideNavCollapsed"

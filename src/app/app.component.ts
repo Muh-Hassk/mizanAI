@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -14,6 +15,15 @@ interface SideNavToggle {
 })
 export class AppComponent {
   title = 'mizanAI';
+
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['en', 'ar']);
+    translate.setDefaultLang('en');
+  }
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
+
 
   isSideNavCollapsed = false;
   screenWidth = 0;

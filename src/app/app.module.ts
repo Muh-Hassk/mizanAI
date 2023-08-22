@@ -14,31 +14,46 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileComponent } from './profile/profile.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BodyComponent,
-    SidenavComponent,
-    HomeComponent,
-    SignupComponent,
-    LoginComponent,
-    ProfileComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    FontAwesomeModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        BodyComponent,
+        SidenavComponent,
+        HomeComponent,
+        SignupComponent,
+        LoginComponent,
+        ProfileComponent,
+
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSidenavModule,
+        FontAwesomeModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory:httpTranslateLoader ,
+            deps: [HttpClient]
+          }
+        })
+    ]
 })
 export class AppModule { 
+}
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

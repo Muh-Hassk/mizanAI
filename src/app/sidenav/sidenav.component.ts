@@ -2,6 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { navbarData } from './nav-data';
 
 
+
+
 interface SideNavToggle {
   screenWidth: number;
   collapsed: boolean;
@@ -13,6 +15,11 @@ interface SideNavToggle {
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent {
+  constructor(
+	
+	) {}
+
+
 
   @Output() oonToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed = false;
@@ -24,8 +31,15 @@ export class SidenavComponent {
     this.oonToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth})
   }
 
+  ngOnInit(): void {
+    
+        
+  }
+  
   closeSidenav() {
     this.collapsed = false;
     this.oonToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth})
   }
+  
+
 }
