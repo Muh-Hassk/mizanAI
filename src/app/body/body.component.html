@@ -1,4 +1,17 @@
 <div class="body" [ngClass]="getBodyClass()">
-    <router-outlet> </router-outlet>
-
+    <div class="navbar">
+        <h4 class="user-name">{{ "hello" | translate }}</h4>
+      
+        <button
+        class="language-button"
+        (click)="toggleLang()"
+        mat-icon-button
+        color="accent"
+        aria-label="Button to change the language"
+      >
+      <i class="fas fa-language fa-lg fa-primary-color" style="color: #040303;"></i>
+      </button>
+    
+      </div>
+    <router-outlet></router-outlet>
 </div>
