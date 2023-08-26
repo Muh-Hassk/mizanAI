@@ -17,6 +17,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SignupRoutingModule } from './signup/signup-routing.module';
 
 
 
@@ -27,7 +28,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         BodyComponent,
         SidenavComponent,
         HomeComponent,
-        SignupComponent,
         LoginComponent,
         ProfileComponent,
 
@@ -43,6 +43,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         MatSidenavModule,
         FontAwesomeModule,
         HttpClientModule,
+        SignupRoutingModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

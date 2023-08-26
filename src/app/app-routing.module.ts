@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SignupRoutingModule } from './signup/signup-routing.module';
 
 const routes: Routes = [
   {path: 'home', component:HomeComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+    SignupRoutingModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

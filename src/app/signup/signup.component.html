@@ -1,1 +1,38 @@
-<h1> SignUp Page </h1>
+<router-outlet></router-outlet>
+<div class="container">
+	<div class="screen">
+		<div class="screen__content">
+			<form class="Signup">
+                <div class="signup__field" *ngFor="let data of IconsData">
+					<i class="login__icon" style="color: #635ca2;" [class]="data.icon" ></i>
+					<input type={{data.type}} class="signup__input" placeholder="{{data.label}}">
+				</div>
+				<button class="button signup__submit">
+					<span class="button__text">Log In Now</span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>				
+			</form>
+			<div class="social-login">
+				<div class="social-login">
+					<h3>Already a Member? Log In
+					<div class="social-icons">
+						<a class="social-login__icon" [routerLink]="['/login']">
+							<button mat-icon-button>
+							  <i class="fas fa-user-plus"></i>
+							</button>
+						  </a>
+						  
+					</div>
+				</h3>
+				</div>
+			</div>
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape4"></span>
+			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>		
+	</div>
+</div>
+<router-outlet></router-outlet>
