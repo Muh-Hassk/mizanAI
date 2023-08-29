@@ -1,27 +1,27 @@
 export const SignupData = [
     {
        icon:'fas fa-user',
-       label:'Full Name',
+       label:'full-name',
        type:'text',
     }
 ,
     {
         icon: 'fas fa-user', // Use "fas" for solid style user-plus icon
-        label: 'User Name',
+        label: 'user-name',
         type:'text',
 
     }
 ,
     {
         icon: 'fas fa-user', // Use "fas" for solid style user-plus icon
-        label: 'Email',
+        label: 'email',
         type:'text',
 
     }
     ,
     {
         icon:'fas fa-lock',
-        label: 'Password',
+        label: 'password',
         type:'password',
     }
 ,

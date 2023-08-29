@@ -29,6 +29,7 @@ import { SignupRoutingModule } from './signup/signup-routing.module';
         SidenavComponent,
         HomeComponent,
         LoginComponent,
+        SignupComponent,
         ProfileComponent,
 
     ],
@@ -44,6 +45,7 @@ import { SignupRoutingModule } from './signup/signup-routing.module';
         FontAwesomeModule,
         HttpClientModule,
         SignupRoutingModule,
+        TranslateModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

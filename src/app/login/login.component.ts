@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { iconsData } from './LoginData';
 
 @Component({
   selector: 'app-login',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  iconsData = iconsData;
   signedUpUsers: any[] = [];
   singupObj = [];
 }

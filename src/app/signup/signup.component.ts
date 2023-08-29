@@ -11,27 +11,14 @@ import {NgSwitch, NgSwitchCase, AsyncPipe, CommonModule} from '@angular/common';
 import { SignupData } from './signupData';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
 
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
-  standalone: true,
-  imports: [
-    NgSwitch,
-    NgSwitchCase,
-    MatStepperModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    AsyncPipe,
-    CommonModule,
-    MatIconModule,
-    RouterModule,
-  ],
 })
 
 export class SignupComponent {

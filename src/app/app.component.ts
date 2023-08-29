@@ -17,10 +17,21 @@ export class AppComponent {
   title = 'mizanAI';
   isSideNavCollapsed = false;
   screenWidth = 0;
+  currentLang: string;
 
 
+  constructor(public translate: TranslateService) {
+    this.currentLang = translate.currentLang;
+  }
 
-
+  ngOnInit(): void {
+    this.toggleLang();
+  
+  }
+  toggleLang() {
+    this.currentLang = this.currentLang === 'en' ? 'ar' : 'en'; // Toggle between 'en' and 'ar' or your language codes
+    this.translate.use(this.currentLang);
+  }
   onToggleSideNav(data: SideNavToggle): void {
     this.screenWidth = data.screenWidth;
     this.isSideNavCollapsed = data.collapsed;

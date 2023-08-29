@@ -1,4 +1,15 @@
 {
    "homePage": "homePage",
-   "sidebarText": "Content" 
+   "sidebarText": "Content",
+   "switch-language": "Switch To Arabic",
+   "mizan": "Mizan",
+   "already-member": "Already a Member? Log In",
+   "full-name": "Full Name",
+   "user-name": "User Name",
+   "email": "Email",
+   "password": "Password",
+   "signup-now": "Sign Up Now",
+   "m": "M",
+   "login" : "Log In",
+   "not-member": "Not a Member Yet? Sign Up Here"
 }

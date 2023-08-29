@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 
 import { SignupRoutingModule } from './signup-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SignupRoutingModule } from './signup-routing.module';
   imports: [
     CommonModule,
     SignupRoutingModule,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ]
 })
 export class SignupModule { }

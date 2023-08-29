@@ -21,8 +21,9 @@ body {
 .screen {		
 
 	position: relative;	
+	background: #2f2b50;
 	height: 600px;
-	width: 360px;	
+	width: 360vh;	
 	box-shadow: 0px 0px 24px #5C5696;
 }
 
@@ -85,8 +86,8 @@ body {
 }
 
 .Signup {
-	width: 320px;
-	padding: 30px;
+    width: 320px;
+    padding: 30px;
 }
 
 .signup__field {
@@ -152,10 +153,10 @@ body {
 
 .social-login {	
 	position: absolute;
-	width: 160px;
-	text-align: center;
-	right: 0px;
-	color: #fff;
+    width: 160px;
+    text-align: center;
+    left: 16px;
+    color: #fff;
 }
 
 .social-icons {

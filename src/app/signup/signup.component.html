@@ -4,24 +4,23 @@
 		<div class="screen__content">
 			<form class="Signup">
                 <div class="signup__field" *ngFor="let data of IconsData">
-					<i class="login__icon" style="color: #635ca2;" [class]="data.icon" ></i>
-					<input type={{data.type}} class="signup__input" placeholder="{{data.label}}">
+					<i class="login__icon" style="color: #fff;" [class]="data.icon" ></i>
+					<input type={{data.type}} class="signup__input" placeholder="{{data.label | translate}}" style="color: #fff;">
 				</div>
 				<button class="button signup__submit">
-					<span class="button__text">Log In Now</span>
+					<span class="button__text">{{"signup-now" | translate}}</span>
 					<i class="button__icon fas fa-chevron-right"></i>
 				</button>				
 			</form>
 			<div class="social-login">
 				<div class="social-login">
-					<h3>Already a Member? Log In
+					<h3>{{"already-member" | translate}}
 					<div class="social-icons">
 						<a class="social-login__icon" [routerLink]="['/login']">
 							<button mat-icon-button>
-							  <i class="fas fa-user-plus"></i>
+							  <i class="fas fa-sign-in-alt"></i>
 							</button>
 						  </a>
-						  
 					</div>
 				</h3>
 				</div>
