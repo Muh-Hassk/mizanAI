@@ -1,1 +1,58 @@
-<h1>Home</h1>
+<div class="container">
+    <nav>
+        <div class="logo">{{"mizan" | translate}} <b>.</b></div>
+        <ul class="navItems">
+            <li><a href="#">{{"home" | translate}}</a></li>
+            <li><a href="#">{{"about" | translate}}</a></li>
+            <li><a href="#">{{"behind" | translate}}</a></li>
+            <li><a href="#">{{"reachUs" | translate}}</a></li>
+        </ul>
+        
+        <div class="links">
+            <a href="#"><i class="fab fa-linkedin"> </i></a>
+            <a href="#"><i class="fa-solid fa-at"> </i></a>
+            <a href="#"><i class="fa-solid fa-phone"> </i></a>
+
+        </div>
+    </nav>
+
+    <div class="warpper">
+        <div class="cols cols0">
+            <span class="topline">{{"Hello" | translate}}</span>
+            <h1>I'm <span class="multiText"></span></h1>
+            <p>
+                Web Page AI Model To Provide Judjical Assisant to Lawyers, Judges, People..
+            </p>
+            <div class="btns">
+                <button>{{"Login" | translate}}</button>
+                <button>{{"Signup" | translate}}</button>
+            </div>
+        </div>
+        <div class="cols cols1">
+            <div class="imgbox">
+              
+                <img  src="assets/29110.png">
+            </div>
+        </div>
+    </div>
+    <div class="warpper">
+        <div class="cols1 cols0">
+            <span class="topline1">{{"abtMizan" | translate}}<b>.</b></span>
+            <p>
+                {{"abtMizanText" | translate}}            </p>
+        </div>
+        <div class="cols1 cols1">
+            <div class="imgbox2">
+              
+                <img  src="assets/Wavy_Tech-12_Single-06.png">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"> </script>
+<script>
+    var typingEffect = new Typed(".multiText" , {
+        strings : ["Judge" , "Lawyer" , "AI Model","Assistant Tool"],
+        loop: true
+    })
+</script>
