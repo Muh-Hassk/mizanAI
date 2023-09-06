@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import Typed from 'typed.js';
+import { membersData } from './membersData';
 
 
 @Component({
@@ -8,7 +9,7 @@ import Typed from 'typed.js';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
- 
+  membersInfo = membersData;
   constructor() { }
 
   ngOnInit(): void {

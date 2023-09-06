@@ -1,197 +1,384 @@
-
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'poppins',sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins", sans-serif;
 }
 body {
-   // overflow: hidden;
-  
+  // overflow: hidden;
+  background-color: #f3f5f8;
 }
+.bigCont {
+  background-color: #f3f5f8;
+}
+.textColored {
+    font-size: 35px;
+    text-align: center;
+    margin-top: 150px;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(45deg, #7c32c9, #0082de, #1ec282);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding-top: 5px; /* Add padding to the top */
+  line-height: 1.2; /* Adjust line-height */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+/* THE MAINCONTAINER HOLDS EVERYTHING */
+.maincontainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 320px;
+  margin-top: 200px;
+  background: none;
+  transform: translate(-50%, -50%);
+  left: 17%;
+}
+
+/* THE CARD HOLDS THE FRONT AND BACK FACES */
+.thecard {
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: 35px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transform-style: preserve-3d;
+  transition: all 0.8s ease;
+}
+
+/* THE PSUEDO CLASS CONTROLS THE FLIP ON MOUSEOVER AND MOUSEOUT */
+.thecard:hover {
+  transform: rotateY(180deg);
+}
+
+/* THE FRONT FACE OF THE CARD, WHICH SHOWS BY DEFAULT */
+.thefront {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background: linear-gradient(45deg, #7600f0, #024b80, #086c45);  
+  color: #3d535f;
+}
+
+/* THE BACK FACE OF THE CARD, WHICH SHOWS ON MOUSEOVER */
+.theback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background: linear-gradient(45deg, #116343, #7f00ff, #005997);
+  color: #7f00ff;
+  text-align: center;
+  transform: rotateY(180deg);
+}
+
+/*This block (starts here) is merely styling for the flip card, and is NOT an essential part of the flip code */
+.thefront h1,
+.thefront h2,
+.theback h1 {
+  font-family: "zilla slab", sans-serif;
+  padding: 5px;
+  font-weight: bolder;
+  font-size: 15px;
+  text-align: center;
+  color: aliceblue;
+}
+
+.thefront h4,
+.theback p {
+  font-family: "zilla slab", sans-serif;
+  padding: 0px;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  color: aliceblue;
+}
+
+@media (max-width: 768px) {
+  .thecard {
+    width: 150px; /* Further reduce card width for smaller screens */
+    height: 200px; /* Further reduce card height for smaller screens */
+    /* Adjust other styles as needed */
+    margin: 5px; /* Reduce margin around each card further */
+  }
+
+  /* Font size for smaller screens */
+  .thefront h1,
+  .thefront h2,
+  .theback h1 {
+    font-size: 12px; /* Reduce font size for smaller screens */
+  }
+
+  .thefront h4,
+  .theback p {
+    font-size: 10px; /* Reduce font size for smaller screens */
+  }
+}
+.links a:hover {
+    color: #1ec282;
+}
+
+/*This block (ends here) is merely styling for the flip card, and is NOT an essential part of the flip code */
+/* Base styles for larger screens */
 .container {
-    width: 100%;
-    min-height: 100vh;
-    background-color: #f3f5f8;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f3f5f8;
 }
-nav{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    height: 80px;
-    line-height: 80px;
-    z-index: 111;
-    background-color:#f3f5f8 ;
+
+nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 80px;
+  line-height: 80px;
+  z-index: 111;
+  background-color: #f3f5f8;
 }
 
 .logo {
-    display: flex;
-    font-size: 40px;
-    font-weight: 800;
-    color: #3d535f;
-    letter-spacing: 3px;
-    cursor: pointer;
-    text-transform: uppercase;
+  display: flex;
+  font-size: 40px;
+  font-weight: 800;
+  color: #3d535f;
+  letter-spacing: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 10px;
 }
 
-b{
-font-size: 70px;
-color: #7f00ff;
+b {
+  font-size: 70px;
+  color: #7f00ff;
 }
+
 .navItems {
-    display: flex;
+  display: flex;
+  margin-right: 245px;
+  padding: 5px;
 }
+
 .navItems li {
-    list-style: none;
-    margin: 0 15px;
+  list-style: none;
+  margin: 0 15px;
 }
+
 .navItems li a {
-    font-size: 25px;
-    color: #3d535f;
-    letter-spacing: 3px;
-    text-decoration: none;
-    text-transform: capitalize;
-    font-weight: 200;
+  font-size: 25px;
+  color: #3d535f;
+  letter-spacing: 3px;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-weight: 200;
 }
-.navItems li:hover a,
-.links a:hover {
-    color: #7f00ff;
+
+.navItems li:hover a{
+  color: #7f00ff;
 }
+
 .links a {
-    font-size: 30px;
-    color: #3d535f;
-    margin: 25px 10px;
+  font-size: 30px;
+  color: #f3f5f8;
+  margin: 25px 10px;
 }
+
 .warpper {
-    display: flex;
-    width: 100%;
-    height: calc(100vh - 80px);
-    justify-content: center;
-    align-items: center;
-    padding: 0 10%;
-    overflow: hidden;
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 80px);
+  justify-content: center;
+  align-items: center;
+  padding: 0 10%;
+  overflow: hidden;
 }
 
 .cols {
-    width: 50%;
+  width: 50%;
 }
 
-.topline{
-    display: block;
-    position: relative;
-    font-size: 35px;
-    letter-spacing: 5px;
-    color: #3d535f;
-    margin-top: 50px;
+.topline {
+  display: block;
+  position: relative;
+  font-size: 35px;
+  letter-spacing: 5px;
+  color: #3d535f;
+  margin-top: 50px;
 }
 
 .topline::after {
-position: absolute;
-content: '';
-height: 4px;
-width: 45px;
-bottom: 0px;
-background-color:#7f00ff ;
+  position: absolute;
+  content: "";
+  height: 4px;
+  width: 45px;
+  bottom: 0px;
+  background-color: #7f00ff;
 }
 
 h1 {
-    display: block;
-    font-size: 3.2rem;
-    font-weight: 900;
-    color: #3d535f;
-    margin-top: 50px;
-    margin-bottom: 40px;
+  display: block;
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #3d535f;
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
-.multiText {
-    color: #7f00ff;
-    text-transform: capitalize;
-}
-p {
-    display: block;
-    width: 90%;
-    font-size: 1.2em;
-    color: #3d535f;
-}
-.btns {
-    width: 100%;
-    position: relative;
-    left: 150px;
-}
-button {
-    outline: none;
-    border: none;
-    cursor: pointer;
-    font-size: 25px;
-    font-weight: 400;
-    color: #fff;
-    background-color: #3d535f;
-    padding: 8px 14px;
-    margin: 20px 5px;
-    letter-spacing: 2px;
-    text-transform: capitalize;
-    box-shadow: 0 15px 10px rgba(0, 0, 0, 0.4);
-}
-button:hover {
-    background-color: #7f00ff;
-}
-.imgbox {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-.imgbox img {
-    position: relative;
-    height: 100%;
-    width: calc(130% - 80px);
-    top: -80px;
-    right: 14px;
-   
-}
-@keyframes animateUser {
-    10% {
-        right: 0.01px;
-        top: 0.01px
-    }
-}
-.warpper2 {
-    display: flex;
-    width: 100%;
-    height: calc(100vh - 80px);
-    justify-content: center;
-    align-items: center;
-    padding: 0 10%;
-    overflow: hidden;
-}
-.imgbox2 {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-.imgbox2 img {
-    position: relative;
-    height: 100%;
-    width: calc(130% - 80px);
-    top: -50px;
-    right: 0px;
-}
-.topline1{
-    display: block;
-    position: relative;
-    font-size: 48px;
-    letter-spacing: 5px;
-    color: #7f00ff;
-    margin-top: 15px;
-    margin-bottom: 43px;
-    font-weight: 600;
 
-    b {
-        font-size: 70px;
-        color: #3e525f;
-    }
+.multiText {
+  color: #7f00ff;
+  text-transform: capitalize;
 }
+
+p {
+  display: block;
+  width: 90%;
+  font-size: 1.2em;
+  color: #3d535f;
+}
+
+.btns {
+  width: 100%;
+  position: relative;
+  left: 100px;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 400;
+  color: #fff;
+  background-color: #3d535f;
+  padding: 8px 14px;
+  margin: 20px 20px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.4);
+}
+
+button:hover {
+  background-color: #7f00ff;
+}
+
+.imgbox {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  margin-left: 100px;
+}
+
+.imgbox img {
+  position: relative;
+  height: 100%;
+  width: calc(130% - 80px);
+  top: -80px;
+  right: 14px;
+}
+
+@keyframes animateUser {
+  10% {
+    right: 0.01px;
+    top: 0.01px;
+  }
+}
+
+.warpper2 {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 80px);
+  justify-content: center;
+  align-items: center;
+  padding: 0 10%;
+  overflow: hidden;
+}
+
+.imgbox2 {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  margin-left: 100px;
+}
+
+.imgbox2 img {
+  position: relative;
+  height: 100%;
+  width: calc(130% - 80px);
+  top: -50px;
+  right: 0px;
+}
+
+.topline1 {
+  display: block;
+  position: relative;
+  font-size: 48px;
+  letter-spacing: 5px;
+  color: #7f00ff;
+  margin-top: 15px;
+  margin-bottom: 43px;
+  font-weight: 600;
+}
+
 .cols1 {
-    width: 50%;
-    margin-top: 130px;
+  width: 50%;
+  margin-top: 130px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  /* Adjust styles for smaller screens here */
+  .logo {
+    font-size: 30px;
+  }
+
+  b {
+    font-size: 50px;
+  }
+  .multiText {
+    font-size: 30px;
+  }
+
+  .navItems li a {
+    font-size: 20px;
+  }
+
+  .topline {
+    font-size: 30px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  button {
+    font-size: 20px;
+  }
+
+  .imgbox img {
+    width: calc(110% - 80px);
+  }
+
+  .topline1 {
+    font-size: 30px;
+  }
 }
