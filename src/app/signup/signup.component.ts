@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {StepperOrientation, MatStepperModule} from '@angular/material/stepper';
 import {Observable} from 'rxjs';
@@ -22,30 +22,47 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class SignupComponent {
+
+
 onClick() {
 console.log("Clicked");
 
 }
+currentLang: string;
+  constructor(public translate: TranslateService,private fb: FormBuilder) {
+    this.currentLang = translate.currentLang;
+  }
+
+  ngOnInit(): void {
+    this.toggleLang();
+    this.createForm();
+  }
+
+  toggleLang() {
+    this.currentLang = this.currentLang === 'en' ? 'ar' : 'en'; // Toggle between 'en' and 'ar' or your language codes
+    this.translate.use(this.currentLang);
+  }
+
   IconsData = SignupData;
   login = 'login'
 
-  unamePattern = "^[a-z0-9_-]{8,15}$";
-  flNamePattern = "(/^[A-Za-z]+$/)";
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
-  thirdFormGroup = this._formBuilder.group({
-    thirdCtrl: ['', Validators.required],
-  });
-  stepperOrientation: Observable<StepperOrientation>;
+  registrationForm: FormGroup = new FormGroup({});
 
-  constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
-    this.stepperOrientation = breakpointObserver
-      .observe('(min-width: 800px)')
-      .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
+
+  createForm() {
+    this.registrationForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
+
+  submitForm() {
+    if (this.registrationForm.valid) {
+      // Handle form submission logic here
+      console.log('Form submitted with data:', this.registrationForm.value);
+    }
   }
 }
-

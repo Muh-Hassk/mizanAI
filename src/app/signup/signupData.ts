@@ -1,8 +1,14 @@
 export const SignupData = [
     {
        icon:'fas fa-user',
-       label:'full-name',
+       label:'first-name',
        type:'text',
+    }
+,
+    {
+    icon:'fas fa-user',
+    label:'last-name',
+    type:'text',
     }
 ,
     {
@@ -24,6 +30,4 @@ export const SignupData = [
         label: 'password',
         type:'password',
     }
-,
-   
 ];

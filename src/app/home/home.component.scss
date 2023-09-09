@@ -178,6 +178,7 @@ b {
 .navItems li {
   list-style: none;
   margin: 0 15px;
+  margin-left: 120px;
 }
 
 .navItems li a {
@@ -258,7 +259,7 @@ p {
   left: 100px;
 }
 
-button {
+.buttons {
   outline: none;
   border: none;
   cursor: pointer;
@@ -273,7 +274,7 @@ button {
   box-shadow: 0 15px 10px rgba(0, 0, 0, 0.4);
 }
 
-button:hover {
+.buttons:hover {
   background-color: #7f00ff;
 }
 
@@ -346,6 +347,9 @@ button:hover {
   .logo {
     font-size: 30px;
   }
+  .buttons {
+    font-size: 15px;
+  }
 
   b {
     font-size: 50px;
@@ -357,7 +361,9 @@ button:hover {
   .navItems li a {
     font-size: 20px;
   }
-
+  .navItems li  {
+   margin-left: 40px;
+  }
   .topline {
     font-size: 30px;
   }

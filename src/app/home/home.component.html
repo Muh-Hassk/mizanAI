@@ -7,6 +7,17 @@
             <li><a routerLink="">{{"home" | translate}}</a></li>
             <li><a href="#behind">{{"about" | translate}}</a></li>
             <li><a href="#maincontainer">{{"reachUs" | translate}}</a></li>
+        
+        
+            <li> <button
+              mat-button
+              (click)="toggleLang()"
+              class="custom-button"
+              aria-label="Button to change the language"
+            >
+              <i class="fa-solid fa-language fa-2xl" style="color: #3d535f;"></i>
+            </button>
+        </li>
         </ul>
         
     </nav>
@@ -19,8 +30,8 @@
                 Web Page AI Model To Provide Judjical Assisant to Lawyers, Judges, People..
             </p>
             <div class="btns">
-                <button routerLink="/login">{{"Login" | translate}}</button>
-                <button routerLink="/signup">{{"Signup" | translate}}</button>
+                <button class="buttons" routerLink="/login">{{"Login" | translate}}</button>
+                <button class="buttons"routerLink="/signup">{{"Signup" | translate}}</button>
             </div>
         </div>
         <div class="cols cols1">

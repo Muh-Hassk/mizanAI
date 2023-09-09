@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import Typed from 'typed.js';
 import { membersData } from './membersData';
+import { FormBuilder } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -10,10 +12,20 @@ import { membersData } from './membersData';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   membersInfo = membersData;
-  constructor() { }
+  currentLang: string;
+  constructor(public translate: TranslateService) {
+    this.currentLang = translate.currentLang;
+  }
 
   ngOnInit(): void {
+    this.toggleLang();
   }
+
+  toggleLang() {
+    this.currentLang = this.currentLang === 'en' ? 'ar' : 'en'; // Toggle between 'en' and 'ar' or your language codes
+    this.translate.use(this.currentLang);
+  }
+
 
   ngAfterViewInit(): void {
     const typingEffect = new Typed('.multiText', {

@@ -18,6 +18,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SignupRoutingModule } from './signup/signup-routing.module';
+import { NgIf } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -44,6 +48,13 @@ import { SignupRoutingModule } from './signup/signup-routing.module';
         MatSidenavModule,
         FontAwesomeModule,
         HttpClientModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        NgIf,
+        MatIconModule,
+        MatButtonModule,
         SignupRoutingModule,
         TranslateModule,
         TranslateModule.forRoot({

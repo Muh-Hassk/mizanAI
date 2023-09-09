@@ -1,37 +1,88 @@
 <router-outlet></router-outlet>
-<div class="container">
-	<div class="screen">
-		<div class="screen__content">
-			<form class="Signup">
-                <div class="signup__field" *ngFor="let data of IconsData">
-					<i class="login__icon" style="color: #fff;" [class]="data.icon" ></i>
-					<input type={{data.type}} class="signup__input" placeholder="{{data.label | translate}}" style="color: #fff;">
+<div class="bigCont">
+  <div class="container">
+    <nav>
+      <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
+      <ul class="navItems">
+        <li>
+          <a routerLink="">{{ "home" | translate }}</a>
+		  </li>
+
+		  <li>
+			<button
+			  mat-button
+			  (click)="toggleLang()"
+			  class="custom-button"
+			  aria-label="Button to change the language"
+			>
+			  <i class="fa-solid fa-language fa-2xl" style="color: #3d535f;"></i>
+			</button>
+		  </li>		  
+
+      </ul>
+    </nav>
+
+
+	<section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+
+		<div class="signin">
+			<div class="content">
+			  <h2>Create New Account</h2>
+			  <form [formGroup]="registrationForm" (ngSubmit)="submitForm()" class="form">
+				<mat-form-field class="example-full-width">
+				  <mat-label>First Name</mat-label>
+				  <input matInput formControlName="firstName" required>
+				  <mat-error *ngIf="registrationForm.get('firstName')!.hasError('required')">
+					First name is required.
+				  </mat-error>
+				</mat-form-field>
+			  
+				<mat-form-field class="example-full-width">
+				  <mat-label>Last Name</mat-label>
+				  <input matInput formControlName="lastName" required>
+				  <mat-error *ngIf="registrationForm.get('lastName')!.hasError('required')">
+					Last name is required.
+				  </mat-error>
+				</mat-form-field>
+			  
+				<mat-form-field class="example-full-width" appearance="outline">
+				  <mat-label>Username</mat-label>
+				  <input matInput formControlName="username" required>
+				  <mat-error *ngIf="registrationForm.get('username')!.hasError('required')">
+					Username is required.
+				  </mat-error>
+				</mat-form-field>
+			  
+				<mat-form-field class="example-full-width" appearance="outline">
+				  <mat-label>Email</mat-label>
+				  <input matInput formControlName="email" required>
+				  <mat-error *ngIf="registrationForm.get('email')!.hasError('required')">
+					Email is required.
+				  </mat-error>
+				  <mat-error *ngIf="registrationForm.get('email')!.hasError('email')">
+					Invalid email format.
+				  </mat-error>
+				</mat-form-field>
+			  
+				<mat-form-field class="example-full-width">
+				  <mat-label>Password</mat-label>
+				  <input matInput formControlName="password" required>
+				  <mat-error *ngIf="registrationForm.get('password')!.hasError('required')">
+					Password is required.
+				  </mat-error>
+				</mat-form-field>
+			  
+				<div class="linksForm">
+				  <a href="login">Already A Member?</a>
 				</div>
-				<button class="button signup__submit">
-					<span class="button__text">{{"signup-now" | translate}}</span>
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
-			</form>
-			<div class="social-login">
-				<div class="social-login">
-					<h3>{{"already-member" | translate}}
-					<div class="social-icons">
-						<a class="social-login__icon" [routerLink]="['/login']">
-							<button mat-icon-button>
-							  <i class="fas fa-sign-in-alt"></i>
-							</button>
-						  </a>
-					</div>
-				</h3>
+				<div class="inputBox">
+				  <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">Register</button>
 				</div>
+			  </form>
+			  
 			</div>
-		</div>
-		<div class="screen__background">
-			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
-			<span class="screen__background__shape screen__background__shape2"></span>
-			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
-	</div>
+		  </div>
+  </section> <!-- partial --> 
+
+  </div>
 </div>
-<router-outlet></router-outlet>

@@ -13,7 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     SignupRoutingModule,
     RouterModule,
-    TranslateModule
+    TranslateModule,
   ]
 })
 export class SignupModule { }
