@@ -22,7 +22,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class SignupComponent {
-
+  hide = true;
 
 onClick() {
 console.log("Clicked");
@@ -51,18 +51,29 @@ currentLang: string;
 
   createForm() {
     this.registrationForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
+      first_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(28), Validators.pattern(/^[A-Za-z]+$/)]],
+      last_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(28), Validators.pattern(/^[A-Za-z]+$/)]],
+      username: ['', [
+        Validators.required,
+        Validators.pattern(/^[A-Za-z_][A-Za-z0-9_]*$/)
+      ]],
+      
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
+  
 
   submitForm() {
     if (this.registrationForm.valid) {
-      // Handle form submission logic here
       console.log('Form submitted with data:', this.registrationForm.value);
+      this.registrationForm.reset({
+        first_name: '',
+        last_name: '',
+        username: '',
+        email: '',
+        password: ''
+      });
     }
   }
 }
