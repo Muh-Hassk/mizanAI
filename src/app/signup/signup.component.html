@@ -21,58 +21,7 @@
     </nav>
 
     <section>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
-      <span></span> <span></span> <span></span> <span></span> <span></span>
+      <span *ngFor="let _ of loopArray"></span>
 
       <div class="signin">
         <div class="content">
@@ -82,76 +31,134 @@
             (ngSubmit)="submitForm()"
             class="form"
           >
-		  
-		  <mat-form-field class="example-full-width" appearance="outline">
-			<mat-label>First Name</mat-label>
-			<input matInput formControlName="first_name" required />
-			<mat-error *ngIf="registrationForm.get('first_name')!.hasError('required')">
-			  First name is <strong>required.</strong> 
-			</mat-error>
-			<mat-error *ngIf="registrationForm.get('first_name')!.hasError('minlength') && !registrationForm.get('first_name')!.hasError('pattern')">
-			  First name should be at least <strong>3</strong> characters.
-			</mat-error>
-			<mat-error *ngIf="registrationForm.get('first_name')!.hasError('pattern')">
-			  First name should only have <strong>alphabetical letters.</strong>
-			</mat-error>
-		  </mat-form-field>
-		  
-		  <mat-form-field class="example-full-width" appearance="outline">
-			<mat-label>Last Name</mat-label>
-			<input matInput formControlName="last_name" required />
-			<mat-error *ngIf="registrationForm.get('last_name')!.hasError('required')">
-			  Last name is <strong>required.</strong> 
-			</mat-error>
-			<mat-error *ngIf="registrationForm.get('last_name')!.hasError('minlength') && !registrationForm.get('last_name')!.hasError('pattern')">
-			  Last name should be at least <strong>3</strong> characters.
-			</mat-error>
-			<mat-error *ngIf="registrationForm.get('last_name')!.hasError('pattern')">
-			  Last name should only have <strong>alphabetical letters.</strong>
-			</mat-error>
-		  </mat-form-field>
-		  
-		  <mat-form-field class="example-full-width" appearance="outline">
-			<mat-label>Username</mat-label>
-			<input matInput formControlName="username" required />
-			<mat-error *ngIf="registrationForm.get('username')!.hasError('required')">
-			  Username is <strong>required.</strong> 
-			</mat-error>
-			<mat-error *ngIf="registrationForm.get('username')!.hasError('pattern') && !registrationForm.get('username')!.hasError('required')">
-			  Username should start with <strong>a letter or underscore.</strong>
-			</mat-error>
-			<mat-error *ngIf="(registrationForm.get('username')!.hasError('minlength') || registrationForm.get('username')!.hasError('maxlength')) && !registrationForm.get('username')!.hasError('required')">
-			  Username should be <strong>between 2 and 12 characters.</strong>
-			</mat-error>
-		  </mat-form-field>
-		  
-		  <mat-form-field class="example-full-width" appearance="outline">
-			<mat-label>Email</mat-label>
-			<input matInput formControlName="email" required />
-			<mat-error *ngIf="registrationForm.get('email')!.hasError('required')">
-			  Email is <strong>required.</strong> 
-			</mat-error>
-			<mat-error *ngIf="registrationForm.get('email')!.hasError('email') && !registrationForm.get('email')!.hasError('required')">
-			  Please enter a valid <strong>email address.</strong>
-			</mat-error>
-		  </mat-form-field>
-		  
-		  <mat-form-field class="example-full-width" appearance="outline">
-			<mat-label>Enter your password</mat-label>
-			<input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-			<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Toggle password visibility'" [attr.aria-pressed]="hide">
-			  <mat-icon class="white-icon">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-			</button>
-			<mat-error *ngIf="registrationForm.get('password')!.hasError('required')">
-			  Password is <strong>required.</strong> 
-			</mat-error>
-			<mat-error *ngIf="registrationForm.get('password')!.hasError('minlength') && !registrationForm.get('password')!.hasError('required')">
-			  Password should be <strong>at least 6 characters.</strong>
-			</mat-error>
-		  </mat-form-field>
-		  
-		  
-		  
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="first_name" required />
+              <mat-error
+                *ngIf="registrationForm.get('first_name')!.hasError('required')"
+              >
+                First name is <strong>required.</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  registrationForm.get('first_name')!.hasError('minlength') &&
+                  !registrationForm.get('first_name')!.hasError('pattern')
+                "
+              >
+                First name should be at least <strong>3</strong> characters.
+              </mat-error>
+              <mat-error
+                *ngIf="registrationForm.get('first_name')!.hasError('pattern')"
+              >
+                First name should only have
+                <strong>alphabetical letters.</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="last_name" required />
+              <mat-error
+                *ngIf="registrationForm.get('last_name')!.hasError('required')"
+              >
+                Last name is <strong>required.</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  registrationForm.get('last_name')!.hasError('minlength') &&
+                  !registrationForm.get('last_name')!.hasError('pattern')
+                "
+              >
+                Last name should be at least <strong>3</strong> characters.
+              </mat-error>
+              <mat-error
+                *ngIf="registrationForm.get('last_name')!.hasError('pattern')"
+              >
+                Last name should only have
+                <strong>alphabetical letters.</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="username" required />
+              <mat-error
+                *ngIf="registrationForm.get('username')!.hasError('required')"
+              >
+                Username is <strong>required.</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  registrationForm.get('username')!.hasError('pattern') &&
+                  !registrationForm.get('username')!.hasError('required')
+                "
+              >
+                Username should start with
+                <strong>a letter or underscore.</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  (registrationForm.get('username')!.hasError('minlength') ||
+                    registrationForm.get('username')!.hasError('maxlength')) &&
+                  !registrationForm.get('username')!.hasError('required')
+                "
+              >
+                Username should be <strong>between 2 and 12 characters.</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" required />
+              <mat-error
+                *ngIf="registrationForm.get('email')!.hasError('required')"
+              >
+                Email is <strong>required.</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  registrationForm.get('email')!.hasError('email') &&
+                  !registrationForm.get('email')!.hasError('required')
+                "
+              >
+                Please enter a valid <strong>email address.</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Enter your password</mat-label>
+              <input
+                matInput
+                formControlName="password"
+                [type]="hide ? 'password' : 'text'"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="hide = !hide"
+                [attr.aria-label]="'Toggle password visibility'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon class="white-icon">{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+
+              <mat-error
+                *ngIf="registrationForm.get('password')!.hasError('required')"
+              >
+                Password is <strong>required.</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  registrationForm.get('password')!.hasError('minlength') &&
+                  !registrationForm.get('password')!.hasError('required')
+                "
+              >
+                Password should be <strong>at least 6 characters.</strong>
+              </mat-error>
+            </mat-form-field>
 
             <div class="linksForm">
               <a href="login">Already A Member?</a>
@@ -164,8 +171,10 @@
                 [disabled]="!registrationForm.valid"
               >
                 Register
-				<i class="fa-solid fa-user-plus" style="color: #ffffff;
-				margin-left: 4px;"></i>
+                <i
+                  class="fa-solid fa-user-plus"
+                  style="color: #ffffff; margin-left: 4px"
+                ></i>
               </button>
             </div>
           </form>
