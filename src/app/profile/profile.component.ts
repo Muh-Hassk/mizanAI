@@ -27,6 +27,8 @@ export class ProfileComponent implements OnInit {
     this.http.get<UserData>('http://localhost:8000/api/user', { withCredentials: true }).subscribe(
       (res: UserData) => {
         this.responseData = res; // Assign the response data to the property
+        console.log(this.responseData.email);
+        
       },
       err => {
         console.log(err);
