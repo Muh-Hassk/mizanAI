@@ -27,22 +27,22 @@
         <div class="content">
           <h2>Log Into Your Account</h2>
           <form
-            [formGroup]="registrationForm"
-            (ngSubmit)="submitForm()"
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
             class="form"
           >
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Username</mat-label>
               <input matInput formControlName="username" required />
               <mat-error
-                *ngIf="registrationForm.get('username')!.hasError('required')"
+                *ngIf="loginForm.get('username')!.hasError('required')"
               >
                 Username is <strong>required.</strong>
               </mat-error>
               <mat-error
                 *ngIf="
-                  registrationForm.get('username')!.hasError('pattern') &&
-                  !registrationForm.get('username')!.hasError('required')
+                   loginForm.get('username')!.hasError('pattern') &&
+                  !loginForm.get('username')!.hasError('required')
                 "
               >
                 Username should start with
@@ -50,13 +50,16 @@
               </mat-error>
               <mat-error
                 *ngIf="
-                  (registrationForm.get('username')!.hasError('minlength') ||
-                    registrationForm.get('username')!.hasError('maxlength')) &&
-                  !registrationForm.get('username')!.hasError('required')
+                  (loginForm.get('username')!.hasError('minlength') ||
+                  loginForm.get('username')!.hasError('maxlength')) &&
+                  !loginForm.get('username')!.hasError('required')
                 "
               >
                 Username should be <strong>between 2 and 12 characters.</strong>
               </mat-error>
+             <mat-error *ngIf="loginForm.get('username')?.hasError('serverError')">
+              <strong>{{"User Not Found."}}</strong>
+            </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="outline">
@@ -80,19 +83,23 @@
               </button>
 
               <mat-error
-                *ngIf="registrationForm.get('password')!.hasError('required')"
+                *ngIf="loginForm.get('password')!.hasError('required')"
               >
                 Password is <strong>required.</strong>
               </mat-error>
               <mat-error
                 *ngIf="
-                  registrationForm.get('password')!.hasError('minlength') &&
-                  !registrationForm.get('password')!.hasError('required')
+                loginForm.get('password')!.hasError('minlength') &&
+                  !loginForm.get('password')!.hasError('required')
                 "
               >
                 Password should be <strong>at least 6 characters.</strong>
               </mat-error>
+              <mat-error *ngIf="loginForm.get('password')?.hasError('serverError')">
+                <strong>{{ loginForm.get('password')?.getError('serverError') }} </strong>
+              </mat-error>
             </mat-form-field>
+           
 
             <div class="linksForm">
               <a href="signup">Not a Member Yet?</a>
@@ -102,7 +109,7 @@
                 mat-raised-button
                 color="primary"
                 type="submit"
-                [disabled]="!registrationForm.valid"
+                [disabled]="!loginForm.valid"
               >
                 LOGIN
                 <i

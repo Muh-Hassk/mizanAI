@@ -60,6 +60,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         MatIconModule,
         MatButtonModule,
         SignupRoutingModule,
+        HttpClientModule,
         TranslateModule,
         TranslateModule.forRoot({
           loader: {
