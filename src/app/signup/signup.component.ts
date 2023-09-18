@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
-import { EmailValidator } from '../Validatiors/EmailValidator';
-import { UsernameValidator } from '../Validatiors/UsernameValidator';
+
 
 
 
@@ -27,10 +26,6 @@ currentLang: string;
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private emailValidator: EmailValidator,
-    private usernameValidator: UsernameValidator,
-
-
     ) 
     {
     this.currentLang = translate.currentLang;
