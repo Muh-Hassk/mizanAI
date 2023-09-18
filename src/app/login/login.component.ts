@@ -53,10 +53,12 @@ export class LoginComponent {
     console.log('Password control errors:', this.loginForm.get('password')?.errors);
   
     // Get the form data
-    const formData = this.loginForm.value;
+    const formData = this.loginForm.getRawValue();
   
     // Make a POST request to the login API
-    this.http.post('http://localhost:8000/api/login', formData).subscribe(
+    this.http.post('http://localhost:8000/api/login', formData,{
+      withCredentials: true
+    }).subscribe(
       (response) => {
         // Successful login, navigate to the profile page
         this.router.navigate(['/profile']);
