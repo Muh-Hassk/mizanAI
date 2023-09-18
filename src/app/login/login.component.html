@@ -1,36 +1,127 @@
-<div class="container">
-	<div class="screen">
-		<div class="screen__content">
-			<form class="Signup">
-                <div class="signup__field" *ngFor="let data of iconsData">
-					<i class="login__icon" style="color: #ffffff;" [class]="data.icon" ></i>
-					<input type={{data.type}} class="signup__input" placeholder="{{data.label | translate}}" style="color: #fff;">
-				</div>
-				<button class="button signup__submit">
-					<span class="button__text">{{"Login" | translate}}</span>
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
-			</form>
-			<div class="social-login">
-				<div class="social-login">
-					<h3>{{"not-member" | translate}}
-					<div class="social-icons">
-						<a class="social-login__icon" [routerLink]="['/signup']">
-							<button mat-icon-button>
-								<i class="fas fa-user-plus"></i>
-							</button>
-						  </a>
-					</div>
-				</h3>
-				</div>
-			</div>
-		</div>
-		<div class="screen__background">
-			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
-			<span class="screen__background__shape screen__background__shape2"></span>
-			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
-	</div>
-</div>
 <router-outlet></router-outlet>
+<div class="bigCont">
+  <div class="container">
+    <nav>
+      <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
+      <ul class="navItems">
+        <li>
+          <a routerLink="">{{ "home" | translate }}</a>
+        </li>
+        <li>
+          <button
+            mat-button
+            (click)="toggleLang()"
+            class="custom-button"
+            aria-label="Button to change the language"
+          >
+            <i class="fa-solid fa-language fa-2xl" style="color: #3d535f"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <section>
+      <span *ngFor="let _ of loopArray"></span>
+
+      <div class="signin">
+        <div class="content">
+          <h2>Log Into Your Account</h2>
+          <form
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+            class="form"
+          >
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="username" required />
+              <mat-error
+                *ngIf="loginForm.get('username')!.hasError('required')"
+              >
+                Username is <strong>required.</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                   loginForm.get('username')!.hasError('pattern') &&
+                  !loginForm.get('username')!.hasError('required')
+                "
+              >
+                Username should start with
+                <strong>a letter or underscore.</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  (loginForm.get('username')!.hasError('minlength') ||
+                  loginForm.get('username')!.hasError('maxlength')) &&
+                  !loginForm.get('username')!.hasError('required')
+                "
+              >
+                Username should be <strong>between 2 and 12 characters.</strong>
+              </mat-error>
+             <mat-error *ngIf="loginForm.get('username')?.hasError('serverError')">
+              <strong>{{"User Not Found."}}</strong>
+            </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Enter your password</mat-label>
+              <input
+                matInput
+                formControlName="password"
+                [type]="hide ? 'password' : 'text'"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="hide = !hide"
+                [attr.aria-label]="'Toggle password visibility'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon class="white-icon">{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+
+              <mat-error
+                *ngIf="loginForm.get('password')!.hasError('required')"
+              >
+                Password is <strong>required.</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                loginForm.get('password')!.hasError('minlength') &&
+                  !loginForm.get('password')!.hasError('required')
+                "
+              >
+                Password should be <strong>at least 6 characters.</strong>
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('password')?.hasError('serverError')">
+                <strong>{{ loginForm.get('password')?.getError('serverError') }} </strong>
+              </mat-error>
+            </mat-form-field>
+           
+
+            <div class="linksForm">
+              <a href="signup">Not a Member Yet?</a>
+            </div>
+            <div class="inputBox">
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="!loginForm.valid"
+              >
+                LOGIN
+                <i
+                  class="fa-solid fa-user-tie fa-xl"
+                  style="color: #ffffff; margin-left: 4px"
+                ></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- partial -->
+  </div>
+</div>

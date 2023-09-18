@@ -18,6 +18,12 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SignupRoutingModule } from './signup/signup-routing.module';
+import { NgIf } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -37,14 +43,24 @@ import { SignupRoutingModule } from './signup/signup-routing.module';
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
+        MatIconModule,
         AppRoutingModule,
+        BrowserAnimationsModule,
         MatToolbarModule,
         MatButtonModule,
         MatIconModule,
         MatSidenavModule,
         FontAwesomeModule,
         HttpClientModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        NgIf,
+        MatIconModule,
+        MatButtonModule,
         SignupRoutingModule,
+        HttpClientModule,
         TranslateModule,
         TranslateModule.forRoot({
           loader: {

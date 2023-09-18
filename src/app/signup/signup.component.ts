@@ -1,17 +1,12 @@
-import {Component} from '@angular/core';
-import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BreakpointObserver} from '@angular/cdk/layout';
-import {StepperOrientation, MatStepperModule} from '@angular/material/stepper';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {NgSwitch, NgSwitchCase, AsyncPipe, CommonModule} from '@angular/common';
-import { SignupData } from './signupData';
-import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl, AsyncValidatorFn, ValidationErrors, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable, of } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
+
+
 
 
 
@@ -22,30 +17,169 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class SignupComponent {
-onClick() {
-console.log("Clicked");
-
-}
-  IconsData = SignupData;
-  login = 'login'
-
-  unamePattern = "^[a-z0-9_-]{8,15}$";
-  flNamePattern = "(/^[A-Za-z]+$/)";
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
-  thirdFormGroup = this._formBuilder.group({
-    thirdCtrl: ['', Validators.required],
-  });
-  stepperOrientation: Observable<StepperOrientation>;
-
-  constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
-    this.stepperOrientation = breakpointObserver
-      .observe('(min-width: 800px)')
-      .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
+  loopArray = new Array(342);
+  emailTakenError: string | null = null;
+  usernameTakenError: string | null = null;  
+currentLang: string;
+  constructor(
+    public translate: TranslateService,
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    ) 
+    {
+    this.currentLang = translate.currentLang;
   }
-}
+  hide = true;
+
+  ngOnInit(): void {
+    this.toggleLang();
+    this.createForm();
+  }
+
+  toggleLang() {
+    this.currentLang = this.currentLang === 'en' ? 'ar' : 'en'; // Toggle between 'en' and 'ar' or your language codes
+    this.translate.use(this.currentLang);
+  }
+  registrationForm: FormGroup = new FormGroup({});
+
+
+  createForm() {
+    this.registrationForm = this.fb.group({
+      first_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(28), Validators.pattern(/^[A-Za-z]+$/)]],
+      last_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(28), Validators.pattern(/^[A-Za-z]+$/)]],
+      username: new FormControl('', {
+        updateOn: 'blur',
+        validators: [
+          Validators.required,
+          Validators.pattern(/^[A-Za-z_][A-Za-z0-9_]*$/)
+        ],
+        asyncValidators: [this.myAsyncValidatorUser.bind(this)]
+      }),
+      email: new FormControl('', {
+        updateOn: 'blur',
+        validators: [
+          Validators.required,
+          Validators.email,
+        ],
+        asyncValidators: [this.myAsyncValidatorEmail.bind(this)]
+      }),
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+  
+  
+  submitForm(): void {
+    const usernameControl = this.registrationForm.get('username');
+    const emailControl = this.registrationForm.get('email');
+  
+    if (this.registrationForm?.valid) {
+      const formData = {
+        username: usernameControl?.value,
+        email: emailControl?.value,
+        first_name: this.registrationForm.get('first_name')?.value,
+        last_name: this.registrationForm.get('last_name')?.value,
+        password: this.registrationForm.get('password')?.value,
+      };
+  
+      this.http.post('http://localhost:8000/api/register', formData)
+        .subscribe(
+          () => {
+            this.router.navigate(['login']);
+          },
+          (errorResponse) => {
+            if (errorResponse.status === 400) {
+              const errors = errorResponse.error;
+              console.log(errors);
+              if (errors.email && errors.email.length > 0) {
+                this.emailTakenError = errors.email[0];
+              } else {
+                this.emailTakenError = null;
+              }
+              if (errors.username && errors.username.length > 0) {
+                this.usernameTakenError = errors.username[0];
+              } else {
+                this.usernameTakenError = null;
+              }
+            } else {
+              // Handle other types of errors (e.g., server errors) here.
+            }
+          }
+        );
+    }
+  }
+  
+  myAsyncValidatorUser(
+    ctrl: AbstractControl
+  ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+    // ctrl.value <---- this is the current value of the input.
+    return this.myHttpCallUser(ctrl.value).pipe(
+      map((isAvailable: boolean) => (isAvailable ? null : { backendError: true })),
+      catchError(() => of(null)) // Return null when there's a network error
+    );
+  }
+  myAsyncValidatorEmail(
+    ctrl: AbstractControl
+  ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+    // ctrl.value <---- this is the current value of the input.
+    return this.myHttpCallEmail(ctrl.value).pipe(
+      map((isAvailable: boolean) => (isAvailable ? null : { backendError: true })),
+      catchError(() => of(null)) // Return null when there's a network error
+    );
+  }
+  
+  
+  myHttpCallUser(username: string): Observable<boolean> {
+    const apiUrl = `http://localhost:8000/api/checkUsername/${username}/`;
+    return this.http.get(apiUrl).pipe(
+      tap((response: any) => console.log('API Response:', response)),
+      map((response: any) => response.available === true),
+      catchError((error) => {
+        console.error('API Error:', error);
+        return of(false);
+      })
+    );
+  }
+  myHttpCallEmail(username: string): Observable<boolean> {
+    const apiUrl = `http://localhost:8000/api/checkEmail/${username}/`;
+    return this.http.get(apiUrl).pipe(
+      tap((response: any) => console.log('API Response:', response)),
+      map((response: any) => response.available === true),
+      catchError((error) => {
+        console.error('API Error:', error);
+        return of(false);
+      })
+    );
+  }
+  
+  
+  
+  /*checkUsernameAvailability(): void {
+    const usernameControl = this.registrationForm.get('username');
+    const username = usernameControl?.value;
+  
+    if (username && usernameControl?.valid) {
+      this.http
+        .get<boolean>(`http://localhost:8000/api/checkUsername/${username}`)
+        .pipe(
+          debounceTime(1000), // Optional: Add debounce time to reduce server requests.
+          distinctUntilChanged(), // Optional: Only send a request if the username has changed.
+          switchMap((available) => {
+            if (available) {
+              this.usernameTakenError = null; // Username is available
+            } else {
+              this.usernameTakenError = 'Username is already taken.';
+            }
+            return of(available); // Return the value to complete the observable chain
+          })
+        )
+        .subscribe(() => {
+          // Handle any additional logic after the HTTP request if needed.
+        });
+    }
+  } */
+}  
+
+
+    
 
