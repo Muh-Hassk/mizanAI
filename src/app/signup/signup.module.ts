@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { SignupRoutingModule } from './signup-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatOptionModule } from '@angular/material/core';
 
 
 @NgModule({

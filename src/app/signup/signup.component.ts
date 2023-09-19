@@ -6,6 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 
+interface AccountType {
+  value: string;
+  viewValue: string;
+}
+
 
 
 
@@ -17,10 +22,15 @@ import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } f
 })
 
 export class SignupComponent {
+  selectedValue: string | undefined;
+  Types: AccountType[] = [
+    {value: 'lawyer-0', viewValue: 'Lawyer'},
+    {value: 'judge-1', viewValue: 'Judge'},
+    {value: 'else-2', viewValue: 'Else'},
+  ];
   loopArray = new Array(342);
   emailTakenError: string | null = null;
   usernameTakenError: string | null = null;  
-currentLang: string;
   constructor(
     public translate: TranslateService,
     private fb: FormBuilder,
@@ -28,19 +38,14 @@ currentLang: string;
     private router: Router,
     ) 
     {
-    this.currentLang = translate.currentLang;
   }
   hide = true;
 
   ngOnInit(): void {
-    this.toggleLang();
     this.createForm();
   }
 
-  toggleLang() {
-    this.currentLang = this.currentLang === 'en' ? 'ar' : 'en'; // Toggle between 'en' and 'ar' or your language codes
-    this.translate.use(this.currentLang);
-  }
+
   registrationForm: FormGroup = new FormGroup({});
 
 
@@ -65,6 +70,7 @@ currentLang: string;
         asyncValidators: [this.myAsyncValidatorEmail.bind(this)]
       }),
       password: ['', [Validators.required, Validators.minLength(6)]],
+      accountType: ['', [Validators.required,]],
     });
   }
   
@@ -80,6 +86,7 @@ currentLang: string;
         first_name: this.registrationForm.get('first_name')?.value,
         last_name: this.registrationForm.get('last_name')?.value,
         password: this.registrationForm.get('password')?.value,
+        accountType: this.registrationForm.get('account_type')?.value
       };
   
       this.http.post('http://localhost:8000/api/register', formData)
@@ -151,33 +158,6 @@ currentLang: string;
       })
     );
   }
-  
-  
-  
-  /*checkUsernameAvailability(): void {
-    const usernameControl = this.registrationForm.get('username');
-    const username = usernameControl?.value;
-  
-    if (username && usernameControl?.valid) {
-      this.http
-        .get<boolean>(`http://localhost:8000/api/checkUsername/${username}`)
-        .pipe(
-          debounceTime(1000), // Optional: Add debounce time to reduce server requests.
-          distinctUntilChanged(), // Optional: Only send a request if the username has changed.
-          switchMap((available) => {
-            if (available) {
-              this.usernameTakenError = null; // Username is available
-            } else {
-              this.usernameTakenError = 'Username is already taken.';
-            }
-            return of(available); // Return the value to complete the observable chain
-          })
-        )
-        .subscribe(() => {
-          // Handle any additional logic after the HTTP request if needed.
-        });
-    }
-  } */
 }  
 
 

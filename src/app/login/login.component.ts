@@ -11,7 +11,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  currentLang: string;
   loopArray = new Array(342);
   wrongCredentials = false;
   constructor
@@ -22,19 +21,14 @@ export class LoginComponent {
      private router: Router
   ) 
   {
-    this.currentLang = translate.currentLang;
   }
   hide = true;
 
   ngOnInit(): void {
-    this.toggleLang();
     this.createForm();
   }
 
-  toggleLang() {
-    this.currentLang = this.currentLang === 'en' ? 'ar' : 'en'; // Toggle between 'en' and 'ar' or your language codes
-    this.translate.use(this.currentLang);
-  }
+  
   loginForm: FormGroup = new FormGroup({});
 
   createForm() {

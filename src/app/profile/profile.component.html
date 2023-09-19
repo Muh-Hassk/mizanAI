@@ -1,3 +1,29 @@
+<div *ngIf="!userisAuth">
+    Fuck off
+</div>
+<div class="bigCont" *ngIf="userisAuth">
+    <div class="container">
+      <nav>
+        <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
+        <ul class="navItems">
+          <li>
+            <a routerLink="">{{ "home" | translate }}</a>
+          </li>
+          <li>
+            <button
+            mat-button
+            (click)="logout()"
+            class="custom-button"
+            aria-label="Button to change the language"
+          >
+            <i class="fa-solid fa-right-from-bracket fa-2xl" style="color: #3d535f"></i>
+          
+          </button>
+          </li>
+        </ul>
+      </nav>
+
+
 <h1>Hello: {{responseData?.username}} <br>
     User ID : {{responseData?.id}} <br>
     First Name : {{responseData?.first_name}} <br> 

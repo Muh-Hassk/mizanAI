@@ -18,14 +18,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.toggleLang();
   }
 
-  toggleLang() {
-    this.currentLang = this.currentLang === 'en' ? 'ar' : 'en'; // Toggle between 'en' and 'ar' or your language codes
-    this.translate.use(this.currentLang);
-  }
-
+  
 
   ngAfterViewInit(): void {
     const typingEffect = new Typed('.multiText', {
