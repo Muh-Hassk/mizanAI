@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -11,6 +11,7 @@ interface UserData {
   last_name: string;
   email: string;
   username: string;
+  accountType: string;
 }
 
 @Component({
@@ -19,6 +20,10 @@ interface UserData {
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  
+
+
+
   userisAuth: string|null = null;
 
 
@@ -43,7 +48,7 @@ export class ProfileComponent implements OnInit {
         this.userisAuth = "ApprovedUsr"
         this.responseData = res; // Assign the response data to the property
         console.log(this.responseData.email);
-        
+        console.log(this.responseData.accountType);
       },
       err => {
         console.log(err);

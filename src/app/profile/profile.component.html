@@ -134,7 +134,7 @@
     </div>
 </div>
 <div class="bigCont" *ngIf="userisAuth">
-    <div class="container">
+    <div class="containerx">
         <nav class="init">
             <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
             <ul class="navItems">
@@ -159,7 +159,24 @@
             </ul>
           </nav>
 
-
-<h1>
-    {{responseData?.username}} Profile Page
-</h1>
+<div class="center"> 
+          <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar [ngClass]="responseData?.accountType"></div>
+                <mat-card-title>{{responseData?.first_name + " "+ responseData?.last_name}}</mat-card-title>
+              <mat-card-subtitle>{{responseData?.accountType}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-form-field class="example-full-width">
+                <mat-label>Username</mat-label>
+                <input matInput disabled value="{{responseData?.username}}">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput disabled value="{{responseData?.email}}">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>User ID</mat-label>
+                <input matInput disabled value="{{responseData?.id}}">
+              </mat-form-field>
+          </mat-card>
+        </div>

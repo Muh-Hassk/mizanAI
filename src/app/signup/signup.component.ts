@@ -24,9 +24,9 @@ interface AccountType {
 export class SignupComponent {
   selectedValue: string | undefined;
   Types: AccountType[] = [
-    {value: 'lawyer-0', viewValue: 'Lawyer'},
-    {value: 'judge-1', viewValue: 'Judge'},
-    {value: 'else-2', viewValue: 'Else'},
+    {value: 'Lawyer', viewValue: 'Lawyer'},
+    {value: 'Judge', viewValue: 'Judge'},
+    {value: 'Else', viewValue: 'Else'},
   ];
   loopArray = new Array(342);
   emailTakenError: string | null = null;
@@ -86,7 +86,7 @@ export class SignupComponent {
         first_name: this.registrationForm.get('first_name')?.value,
         last_name: this.registrationForm.get('last_name')?.value,
         password: this.registrationForm.get('password')?.value,
-        accountType: this.registrationForm.get('account_type')?.value
+        accountType: this.registrationForm.get('accountType')?.value
       };
   
       this.http.post('http://localhost:8000/api/register', formData)

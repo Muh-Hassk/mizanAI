@@ -25,6 +25,9 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+
+
 
 
 
@@ -67,6 +70,7 @@ import { MatSelectModule } from '@angular/material/select';
         TranslateModule,
         MatOptionModule,
         MatSelectModule,
+        MatCardModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
