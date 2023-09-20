@@ -70,7 +70,37 @@ body {
   .navItems li:hover a{
 	color: #7f00ff;
   }
+  @media (max-width: 768px) {
+    /* Adjust styles for smaller screens here */
+    .logo {
+      font-size: 30px;
+    }
+    .navItems {
+      margin-right: 250px;
+      }
+    .navItems li a {
+      font-size: 20px;
+    }
+    .navItems li  {
+     margin-left: 200px;
+    }
+  }
   
+  @media (max-width: 600px) {
+    /* Adjust styles for smaller screens here */
+    .logo {
+      font-size: 22px;
+    }
+    .navItems {
+      margin-right: 200px;    
+      }
+    .navItems li a {
+      font-size: 15px;
+    }
+    .navItems li  {
+     margin-left: 20px;
+    }
+  }
   .custom-button:hover {
 	color: #7f00ff; /* Color when hovered */
 	cursor: pointer;
@@ -280,3 +310,4 @@ input[type="submit"]:active
 	color: #7f00ff !important;
 	font-weight: 600;
 }
+

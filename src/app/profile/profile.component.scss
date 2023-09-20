@@ -19,7 +19,7 @@ body {
 	background-color: #f3f5f8;
   }
   
-  nav {
+  .init {
 	display: flex;
 	width: 100%;
 	justify-content: space-between;
@@ -28,6 +28,17 @@ body {
 	z-index: 111;
 	margin-bottom: 30px;
 	background-color: #f3f5f8;
+  }
+  .a {
+    
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        height: 80px;
+        line-height: 80px;
+        z-index: 111;
+        margin-bottom: 30px;
+        background-color: #f3f5f8;
   }
   
   .logo {
@@ -47,18 +58,52 @@ body {
   }
   
   .navItems {
-	display: flex;
-	margin-right: 0px;
-	padding: 5px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .Logout {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .navItems li, .Logout li {
+    margin: 0 30px; /* Adjust the margin as needed for spacing between items */
   }
   
-  .navItems li {
-	list-style: none;
-	margin: 0 15px;
-	margin-left: 360px;
+  .navItems a, .Logout a {
+    text-decoration: none;
+    color: #3d535f;
+  }
+
+  
+  .custom-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
   }
   
-  .navItems li a {
+  .fa-regular.fa-message {
+    font-size: 24px; /* Adjust the font size as needed */
+  }
+  
+  .fa-solid.fa-right-from-bracket {
+    font-size: 24px; /* Adjust the font size as needed */
+    margin-left: 5px; /* Add spacing between the button and the icon */
+  }
+  
+  @media (min-width: 768px) {
+    /* Apply these styles for screens with a width of 768px or more */
+    .navItems {
+      justify-content: flex-end; /* Right-align items on larger screens */
+    }
+  }
+  
+  
+  .navItems li a, .Logout li a {
 	font-size: 25px;
 	color: #3d535f;
 	letter-spacing: 3px;
@@ -70,8 +115,119 @@ body {
   .navItems li:hover a{
 	color: #7f00ff;
   }
+
+  .Logout li:hover a{
+	color: #7f00ff;
+    cursor: pointer;
+  }
+
   
   .custom-button:hover {
 	color: #7f00ff; /* Color when hovered */
 	cursor: pointer;
   }
+
+  .custom-button {
+    color: #3d535f;
+    font-size: 20px;
+  }
+
+  .fundo {
+	animation: scales 3s alternate infinite;
+	transform-origin: center;
+}
+.pao-baixo {
+	animation: rotatepao 14s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
+	transform-origin: center;
+}
+.pao-cima {
+	animation: rotatepao 7s 1s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
+	transform-origin: center;
+}
+.olhos {
+	animation: olhos 2s alternate infinite;
+	transform-origin: center;
+}
+
+.left-sparks {
+	animation: left-sparks 4s alternate infinite;
+	transform-origin: 150px 156px;
+}
+
+.right-sparks {
+	animation: left-sparks 4s alternate infinite;
+	transform-origin: 310px 150px;
+}
+
+.olhos {
+	animation: olhos 2s alternate infinite;
+	transform-origin: center;
+}
+@keyframes scales {
+	from {
+		transform: scale(0.98);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+@keyframes rotatepao {
+	0% {
+		transform: rotate(0deg);
+	}
+	50%,
+	60% {
+		transform: rotate(-20deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes olhos {
+	0% {
+		transform: rotateX(0deg);
+	}
+	100% {
+		transform: rotateX(30deg);
+	}
+}
+
+@keyframes left-sparks {
+	0% {
+		opacity: 0;
+	}
+}
+
+.main {
+	
+	margin: 0px auto;
+	width: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.path {
+	stroke-dasharray: 300;
+	stroke-dashoffset: 300;
+	animation: dash 4s alternate infinite;
+}
+
+@keyframes dash {
+	0%,
+	30% {
+		fill: 4B4B62;
+		stroke-dashoffset: 0;
+	}
+	80%,
+	100% {
+		fill: transparent;
+		stroke-dashoffset: -200;
+	}
+}
+
+.container {
+	fill: #fafafa;
+}
