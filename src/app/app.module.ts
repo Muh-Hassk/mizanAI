@@ -24,6 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { ChatWindowComponent } from './chat-window/chat-window.component';
+import { MessageComponent } from './shared/component/message/message.component';
+import { ConversationComponent } from './shared/component/conversation/conversation.component';
 
 
 
@@ -38,6 +41,9 @@ import { MatCardModule } from '@angular/material/card';
         LoginComponent,
         SignupComponent,
         ProfileComponent,
+        ChatWindowComponent,
+        MessageComponent,
+        ConversationComponent,
 
     ],
     providers: [],
