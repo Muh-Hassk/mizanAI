@@ -7,8 +7,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { BodyComponent } from './body/body.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
@@ -36,8 +34,6 @@ import { MatCardModule } from '@angular/material/card';
 @NgModule({
     declarations: [
         AppComponent,
-        BodyComponent,
-        SidenavComponent,
         HomeComponent,
         LoginComponent,
         SignupComponent,

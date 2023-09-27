@@ -100,10 +100,45 @@ body {
     .navItems {
       justify-content: flex-end; /* Right-align items on larger screens */
     }
+  }
+  @media (max-width: 768px) {
     .navItems li a, .Logout li a {
-        font-size: 15px;
+      font-size: 15px !important; /* Adjust the smaller font size as needed */
+    }
+  
+    .navItems .fa-xl,
+    .Logout .fa-2xl {
+      font-size: 25px; /* Adjust the smaller icon size as needed */
+    }
+    .Logout .fa-2xl {
+
+      margin-bottom: 4px;
+      margin-right: 20px;
+    }
+    
+      .mat-mdc-card-title {
+        font-size: 30px !important;
+        color: #c7c7c7;
+      }
+      .mat-mdc-card-subtitle {
+        font-size: 20px !important;
+      }
+      .logo {
+        font-size: 30px;
+      }
+    }
+  
+  @media (max-width: 516px) {
+    .navItems li a, .Logout li a {
+      font-size: 10px !important; /* Adjust the smaller font size as needed */
+    }
+  
+    .navItems .fa-xl,
+    .Logout .fa-2xl {
+      font-size: 20px; /* Adjust the smaller icon size as needed */
     }
   }
+  
   
   
   .navItems li a, .Logout li a {
@@ -233,13 +268,7 @@ body {
 
 .containerx {
 	fill: #fafafa;
-}
-.example-card {
-    
-    width: 100%;
-    align-items: center;
-  }
-  
+} 
   .Lawyer {
     background-image: url('https://media.npr.org/assets/img/2022/07/25/bcs_609_gl_1005_0864-rt-d902123a10b2eb10167b5f916a21d3af0664b6c4.jpg');
     background-size: cover;
@@ -268,10 +297,16 @@ body {
   .mat-mdc-form-field{
     width: 300px;
   }
-  .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh; /* This centers the content vertically within the viewport height */
-      
+
+     .center {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
+        .example-card {
+    
+          width: 100%;
+          align-items: center;
+        }
+       
+        
