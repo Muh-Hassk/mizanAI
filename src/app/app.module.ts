@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -27,6 +28,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ChatWindowComponent } from './chat-window/chat-window.component';
 import { MessageComponent } from './shared/component/message/message.component';
 import { ConversationComponent } from './shared/component/conversation/conversation.component';
+import { ChatSidebarComponent } from './chat-sidebar/chat-sidebar.component';
 
 
 
@@ -44,6 +46,7 @@ import { ConversationComponent } from './shared/component/conversation/conversat
         ChatWindowComponent,
         MessageComponent,
         ConversationComponent,
+        ChatSidebarComponent,
 
     ],
     providers: [],
@@ -54,6 +57,8 @@ import { ConversationComponent } from './shared/component/conversation/conversat
         AppRoutingModule,
         BrowserAnimationsModule,
         MatToolbarModule,
+        MatListModule,
+        MatDividerModule,
         MatButtonModule,
         MatIconModule,
         MatSidenavModule,

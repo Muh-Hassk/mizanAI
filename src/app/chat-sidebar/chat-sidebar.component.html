@@ -1,0 +1,20 @@
+<div class="ui sidebar inverted vertical menu visible">
+  <a class="item" routerLink="/new">
+    <div class="newChat">
+      <i class="icon plus">
+    </i>
+        <span> New Chat </span>
+
+    </div>
+  </a>
+
+  <a class="item" routerLink="/chats/{{conversation.id}}" *ngFor="let conversation of conversations">
+    <div class="Chat">
+        <span>{{conversation.name}}</span>
+    </div>
+  </a>
+</div>
+<div class="pusher">
+    <router-outlet></router-outlet>
+    <app-chat-window> </app-chat-window>
+</div>
