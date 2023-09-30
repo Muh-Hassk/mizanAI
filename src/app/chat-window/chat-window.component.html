@@ -5,11 +5,12 @@
   [content]="message.content">
 </app-message>
 </div>
-<div class="input">
-    <input
+<div class="chat-input">
+  <input
     type="text"
-    placeholder="Type Your Case to Get Judge From Mizan AI"
+    placeholder="Type Your Message..."
     [(ngModel)]="message"
-    (keyup.enter)="sendMessage()"/>
-
+    (keyup.enter)="sendMessage()"
+  />
+  <button (click)="sendMessage()">Send</button>
 </div>

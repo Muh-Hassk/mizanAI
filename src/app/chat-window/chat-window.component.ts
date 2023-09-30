@@ -37,7 +37,7 @@ export class ChatWindowComponent {
         );
         this.message = '';
     }
-    else {
+    else if(this.message !== ''&& this.id === undefined) {
      
         // Create a new chat with a default message
         const newChatMessage: Message = { role:'user', content: this.message };
@@ -46,6 +46,7 @@ export class ChatWindowComponent {
           // After the chat is created by the API, navigate to its route
           this.route.navigate(['/chats',newID]);
       }
+      
     }
     }
   
