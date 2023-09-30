@@ -26,9 +26,38 @@
         }
         .Chat {
             text-align: center;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
     }
 }
+.custom-icon {
+    /* Your custom styles here */
+    color: rgb(255, 2, 2); /* Default icon color */
+    font-size: 22px; /* Default icon size */
+    /* Add any other CSS properties you need */
+    
+  }
+  .right.aligned {
+    height: 45px;
+    width: 45px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Add a hover effect */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 80px;
+  }
+  
+  .right.aligned:hover {
+    /* Define the styles for the hover effect */
+    background-color: #5a5a5a;
+    transform: scale(1.1); /* Scale the icon up by 10% on hover */
+    cursor: pointer; /* Change the cursor to a pointer on hover */
+  }
+  
 
 .pusher {
     width: calc(100% - 260px) !important;

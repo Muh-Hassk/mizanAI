@@ -13,6 +13,9 @@
       routerLinkActive="active"
     >
       <span>{{ conversation.name }}</span>
+      <div class="right aligned">
+        <i class="icon trash alternate custom-icon" (click)="onTrashIconClick($event, conversation.id)"></i>
+      </div>
     </div>
   </a>
 </div>

@@ -46,5 +46,8 @@ export class ApiService {
     this.conversations.push({id, name: message.content, messages: [message]})
     return id;
   }
+  deleteConversation(conversationId: string) {
+    this.conversations = this.conversations.filter(conversation => conversation.id !== conversationId);
+  }
   
 }

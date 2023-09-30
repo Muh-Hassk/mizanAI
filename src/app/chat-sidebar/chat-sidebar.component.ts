@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './chat-sidebar.component.html',
   styleUrls: ['./chat-sidebar.component.scss']
 })
-export class ChatSidebarComponent {
+export class ChatSidebarComponent { 
   conversations: Conversation[] = [];
 
   constructor
@@ -21,6 +21,18 @@ export class ChatSidebarComponent {
    console.log(this.conversations);
   }
 
+  onTrashIconClick(event: Event, conversationId: string) {
+    // Prevent the click event from propagating to parent elements
+    event.stopPropagation();
+    this.api.deleteConversation(conversationId);
+    
+    // Perform actions when the Trash icon is clicked
+    // You can access the conversationId here and take appropriate actions
+    console.log(`Trash icon clicked for conversation with ID: ${conversationId}`);
+    // Call your desired function or logic here
+    console.log(this.api.getConversations());
+
+  }
 }
 
 
