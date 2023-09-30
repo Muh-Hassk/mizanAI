@@ -31,6 +31,8 @@ export class ChatSidebarComponent {
     console.log(`Trash icon clicked for conversation with ID: ${conversationId}`);
     // Call your desired function or logic here
     console.log(this.api.getConversations());
+    this.conversations = this.api.getConversations();
+    this.router.navigate(['/new']);
 
   }
 }
