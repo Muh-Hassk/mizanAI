@@ -1,3 +1,15 @@
-<h1> Chat window Works
-    
-</h1>
+<div class="messages">
+  <app-message 
+  *ngFor="let message of messages"
+  [role]="message.role"
+  [content]="message.content">
+</app-message>
+</div>
+<div class="input">
+    <input
+    type="text"
+    placeholder="Type Your Case to Get Judge From Mizan AI"
+    [(ngModel)]="message"
+    (keyup.enter)="sendMessage()"/>
+
+</div>

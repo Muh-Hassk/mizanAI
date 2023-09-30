@@ -1,1 +1,10 @@
-<p>message works!</p>
+<div class="message" [ngClass]="role">
+    <div class="message-content">
+        <div class="avatar">
+            {{role.substring(0,1) | titlecase}}
+        </div>
+        <div class="text">
+            {{content}}
+        </div>
+    </div>
+</div>

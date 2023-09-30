@@ -41,12 +41,8 @@ export class LoginComponent {
     });
   }
 
-  onSubmit() {
-    // Log form validity and password control errors for debugging
-    console.log('Form validity:', this.loginForm.valid);
-    console.log('Password control errors:', this.loginForm.get('password')?.errors);
-  
-    // Get the form data
+  onSubmit() {  
+    
     const formData = this.loginForm.getRawValue();
   
     // Make a POST request to the login API

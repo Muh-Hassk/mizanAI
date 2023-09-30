@@ -35,8 +35,8 @@ export class ApiService {
   getConversations() {
     return this.conversations;
   }
-  getConversation(id:number) {
-
+  getConversation(id:string) {
+    return this.conversations.find(conversation => conversation.id === id);
   }
   addMessage(id:string, message:Message){
     this.conversations.filter(conversation => conversation.id === id)[0].messages.push(message)
@@ -44,5 +44,7 @@ export class ApiService {
   createConversation(message:Message) {
     let id = (this.conversations.length + 1).toString()
     this.conversations.push({id, name: message.content, messages: [message]})
-  } 
+    return id;
+  }
+  
 }
