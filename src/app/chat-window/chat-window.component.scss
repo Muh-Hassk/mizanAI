@@ -37,4 +37,43 @@
   button:hover {
     background-color: #370145;
   }
+  .init {
+	display: flex;
+	width: 100%;
+	justify-content:center;
+	height: 80px;
+	line-height: 80px;
+	z-index: 111;
+	background-color: #00141b;
+    color: #fff;
+  }
+
+  .logo {
+	display: flex;
+	font-size: 40px;
+	font-weight: 800;
+	color: #ffffff;
+	letter-spacing: 3px;
+	cursor: pointer;
+	text-transform: uppercase;
+	padding: 10px;
+  }
   
+  b {
+	font-size: 70px;
+	color: #7f00ff;
+  }
+  
+  
+  @media (min-width: 768px) {
+    /* Apply these styles for screens with a width of 768px or more */
+   
+  }
+  @media (max-width: 768px) {
+  
+      .logo {
+        font-size: 30px;
+      }
+    }
+  
+

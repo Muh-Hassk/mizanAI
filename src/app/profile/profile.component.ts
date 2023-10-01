@@ -3,16 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { UserData } from '../shared/interface/conversation';
+import { ApiService } from '../shared/service/api.service';
 
 
-interface UserData {
-  id: number;
-  first_name: string;
-  last_name: string;
-  email: string;
-  username: string;
-  accountType: string;
-}
+
 
 @Component({
   selector: 'app-profile',
@@ -33,6 +28,7 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
+    private api: ApiService,
     ) 
     {
   }
@@ -42,25 +38,24 @@ export class ProfileComponent implements OnInit {
   responseData: UserData | null = null; // Use the UserData interface
  
   
-  ngOnInit(): void {
-    this.http.get<UserData>('http://localhost:8000/api/user', { withCredentials: true }).subscribe(
-      (res: UserData) => {
-        this.userisAuth = "ApprovedUsr"
-        this.responseData = res; // Assign the response data to the property
-        console.log(this.responseData.email);
-        console.log(this.responseData.accountType);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
-  logout() {
-    this.http.post('http://localhost:8000/api/logout', {}, {withCredentials: true})
-    .subscribe(() => {
-      this.userisAuth = null;
-      this.router.navigate(['home']);
+  Auth!: boolean;
+
+  ngOnInit() {
+    this.api.UserisAuth().subscribe(Auth => {
+      console.log(Auth);
+      this.Auth = Auth;
     });
+
+    this.api.userData().subscribe(UserData => {
+      this.responseData = UserData;
+    });
+
+  }
+
+  logout() {
+    this.api.logout();
+    this.router.navigate(['home']);
+    this.Auth = false;
     }
 
 }

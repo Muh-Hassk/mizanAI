@@ -29,6 +29,7 @@ import { ChatWindowComponent } from './chat-window/chat-window.component';
 import { MessageComponent } from './shared/component/message/message.component';
 import { ConversationComponent } from './shared/component/conversation/conversation.component';
 import { ChatSidebarComponent } from './chat-sidebar/chat-sidebar.component';
+import { UnauthoraizedPageComponent } from './unauthoraized-page/unauthoraized-page.component';
 
 
 
@@ -47,6 +48,7 @@ import { ChatSidebarComponent } from './chat-sidebar/chat-sidebar.component';
         MessageComponent,
         ConversationComponent,
         ChatSidebarComponent,
+        UnauthoraizedPageComponent,
 
     ],
     providers: [],

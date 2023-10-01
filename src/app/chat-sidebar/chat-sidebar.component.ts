@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../shared/service/api.service';
-import { Conversation } from '../shared/interface/conversation';
+import { Conversation, UserData } from '../shared/interface/conversation';
 import { Message } from '../shared/interface/message';
 import { Router } from '@angular/router';
 @Component({
@@ -8,8 +8,27 @@ import { Router } from '@angular/router';
   templateUrl: './chat-sidebar.component.html',
   styleUrls: ['./chat-sidebar.component.scss']
 })
-export class ChatSidebarComponent { 
+export class ChatSidebarComponent {
   conversations: Conversation[] = [];
+  Auth!: boolean;
+  responseData: UserData | null = null; // Use the UserData interface
+  ngOnInit() {
+    this.api.UserisAuth().subscribe(Auth => {
+      console.log(Auth);
+      this.Auth = Auth;
+    });
+
+    this.api.userData().subscribe(UserData => {
+      this.responseData = UserData;
+    });
+  }
+  
+  logout() {
+    this.api.logout();
+    this.router.navigate(['home']);
+    this.Auth = false;
+  }
+
 
   constructor
   ( 
@@ -33,8 +52,9 @@ export class ChatSidebarComponent {
     console.log(this.api.getConversations());
     this.conversations = this.api.getConversations();
     this.router.navigate(['/new']);
-
   }
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  } 
 }
-
-
