@@ -91,7 +91,7 @@ body {
 .pusher {
   width: calc(100% - 260px) !important;
   margin-left: 260px !important;
-  background-color: #343541;
+  background-color: #00141b;
   height: 100vh;
   color: white;
 }
@@ -167,8 +167,7 @@ hr {
     transition: background-color 0.3s ease, transform 0.3s ease;
     border-radius: 80px;
     .signOut:hover {
-    background-color: #ff0000c5;
-  transform: scale(1.4); /* Scale the icon up by 10% on hover */
+    background-color: #fdfdfdc5;
   cursor: pointer; /* Change the cursor to a pointer on hover */
   .signout-icon {
     color: #090606;
@@ -179,6 +178,7 @@ hr {
       max-width: 45px;
       font-size: 24px; /* Increase the icon size */
       border-radius: 100px;
+      color: #fff;
       margin-right: 17px; /* Add margin to separate image from text */
       vertical-align: middle; /* Vertically align the image with text */
       margin-left: 15px;
@@ -189,8 +189,8 @@ hr {
       }
     }
     i:hover {
-      background-color: #e03e3e;
-      transform: scale(1.3);
+      color: #bd2828;
+     
     }
   }
 }

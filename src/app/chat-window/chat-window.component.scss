@@ -1,31 +1,55 @@
 .messages {
-    margin-bottom: 10px;
+  max-height: calc(100vh - 130px); /* Adjust as needed */
+  overflow-y: auto;
 }
 
 
+/* Your existing styles for .chat-input */
 .chat-input {
-    display: flex;
-    position: fixed;
+  display: flex;
+  position: fixed;
   width: calc(100% - 260px);
   bottom: 0;
-    align-items: center;
-    background-color: #1b1c1d;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-  }
-  
-  input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    background-color: #444654;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    outline: none;
-  }
+  align-items: center;
+  margin-top: 20px; /* Initial margin between input and messages */
+
+  padding: 10px;
+  background-color: #0a1f27;
+  border-top: 1px solid #f9f9fa;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  background-color: #0a1f27;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  resize: none; /* Prevent textarea resizing by the user */
+  overflow-y: hidden; /* Hide vertical scrollbar initially */
+  min-height: 40px; /* Minimum height for the input field */
+}
+
+button {
+  margin-left: 10px;
+  background-color: #004f8a;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #003d70;
+}
+
   
   button {
-    background-color: #6f1b84;
+    background-color: #ffffff;
     color: white;
     border: none;
     border-radius: 20px;
@@ -75,5 +99,3 @@
         font-size: 30px;
       }
     }
-  
-

@@ -24,10 +24,13 @@ export class ChatWindowComponent {
     })
   }
 
+  adjustInputHeight(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    inputElement.style.height = 'auto'; // Reset the height to auto to calculate the scrollHeight
+    inputElement.style.height = inputElement.scrollHeight + 'px';
+  }
 
   sendMessage() {
-    
-    
     if(this.message !== ''&& this.id !== undefined) {
       this.api.addMessage(this.id,
         {

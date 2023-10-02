@@ -1,9 +1,9 @@
 .message{
     width: 100%;
-    padding: 25px;
-    font-size: 16px;
+    padding: 20px;
+    font-size: 18px;
     &.user {
-        background-color: #444654;
+        background-color:#390c81;
     }
     .message-content{
         width: 800px;
@@ -11,7 +11,10 @@
         margin-right: auto;
         display: flex;
         .avatar{
-            width: 40px;
+            width: 30px;
+            img {
+               
+            }
           
             .text{
 

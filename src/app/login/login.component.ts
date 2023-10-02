@@ -51,7 +51,7 @@ export class LoginComponent {
     }).subscribe(
       (response) => {
         // Successful login, navigate to the profile page
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/new']);
       },
       (error) => {
         if (error.status === 403) {
