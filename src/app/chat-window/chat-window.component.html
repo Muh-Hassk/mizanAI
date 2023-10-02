@@ -2,11 +2,14 @@
   <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
 </nav>
 <div class="messages">
+  <ng-container 
+  >
   <app-message 
   *ngFor="let message of messages"
   [role]="message.role"
   [content]="message.content">
 </app-message>
+</ng-container>
 </div>
 <div class="chat-input">
   <input
@@ -15,5 +18,5 @@
     [(ngModel)]="message"
     (keyup.enter)="sendMessage()"
   />
-  <button (click)="sendMessage()">Send</button>
+ <i class="paper plane outline icon" (click)="sendMessage()"></i>
 </div>

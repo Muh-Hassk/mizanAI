@@ -14,7 +14,7 @@
   margin-top: 20px; /* Initial margin between input and messages */
 
   padding: 10px;
-  background-color: #0a1f27;
+  background-color: #282828;
   border-top: 1px solid #f9f9fa;
 }
 
@@ -48,18 +48,17 @@ button:hover {
 }
 
   
-  button {
-    background-color: #ffffff;
+  i {
     color: white;
     border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    margin-left: 10px;
+    margin-left: 20px;
+    margin-right: 10px;
     cursor: pointer;
+    font-size: 25px;
   }
   
-  button:hover {
-    background-color: #370145;
+  i:hover {
+    color: #7f00ff;
   }
   .init {
 	display: flex;
@@ -68,15 +67,15 @@ button:hover {
 	height: 80px;
 	line-height: 80px;
 	z-index: 111;
-	background-color: #00141b;
-    color: #fff;
+	background-color: #282828;
+    color: #0a1f27;
   }
 
   .logo {
 	display: flex;
 	font-size: 40px;
 	font-weight: 800;
-	color: #ffffff;
+	color: #c2c2c2;
 	letter-spacing: 3px;
 	cursor: pointer;
 	text-transform: uppercase;
