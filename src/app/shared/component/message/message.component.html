@@ -1,0 +1,13 @@
+<div class="message" [ngClass]="role">
+    <div class="message-content">
+        <div class="avatar" *ngIf="role == 'user'">
+            {{responseData?.username?.slice(0,1) | titlecase}}
+        </div>
+        <div class="avatar" *ngIf="role == 'system'">
+            {{role.slice(0,1) | titlecase}}
+        </div>
+        <div class="text">
+            {{content}}
+        </div>
+    </div>
+</div>

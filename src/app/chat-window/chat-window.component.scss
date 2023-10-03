@@ -1,0 +1,100 @@
+.messages {
+  max-height: calc(100vh - 130px); /* Adjust as needed */
+  overflow-y: auto;
+}
+
+
+/* Your existing styles for .chat-input */
+.chat-input {
+  display: flex;
+  position: fixed;
+  width: calc(100% - 260px);
+  bottom: 0;
+  align-items: center;
+  margin-top: 20px; /* Initial margin between input and messages */
+
+  padding: 10px;
+  background-color: #282828;
+  border-top: 1px solid #f9f9fa;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  background-color: #0a1f27;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  resize: none; /* Prevent textarea resizing by the user */
+  overflow-y: hidden; /* Hide vertical scrollbar initially */
+  min-height: 40px; /* Minimum height for the input field */
+}
+
+button {
+  margin-left: 10px;
+  background-color: #004f8a;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #003d70;
+}
+
+  
+  i {
+    color: white;
+    border: none;
+    margin-left: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 25px;
+  }
+  
+  i:hover {
+    color: #7f00ff;
+  }
+  .init {
+	display: flex;
+	width: 100%;
+	justify-content:center;
+	height: 80px;
+	line-height: 80px;
+	z-index: 111;
+	background-color: #282828;
+    color: #0a1f27;
+  }
+
+  .logo {
+	display: flex;
+	font-size: 40px;
+	font-weight: 800;
+	color: #c2c2c2;
+	letter-spacing: 3px;
+	cursor: pointer;
+	text-transform: uppercase;
+	padding: 10px;
+  }
+  
+  b {
+	font-size: 70px;
+	color: #7f00ff;
+  }
+  
+  
+  @media (min-width: 768px) {
+    /* Apply these styles for screens with a width of 768px or more */
+   
+  }
+  @media (max-width: 768px) {
+  
+      .logo {
+        font-size: 30px;
+      }
+    }

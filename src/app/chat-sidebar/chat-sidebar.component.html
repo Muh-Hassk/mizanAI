@@ -1,0 +1,56 @@
+<div *ngIf="Auth == false">
+    <app-unauthoraized-page> </app-unauthoraized-page>
+</div>
+  <div *ngIf="Auth"> 
+<div class="ui sidebar inverted vertical menu visible">
+  <a class="item" routerLink="/new">
+    <div class="newChat">
+      <i class="icon plus"> </i>
+      <span> New Chat </span>
+    </div>
+  </a>
+
+  
+
+<div class="conversation-container">
+  <div class="conversation-list">
+    <a class="item" *ngFor="let conversation of conversations">
+      <div
+        class="Chat"
+        routerLink="/chats/{{ conversation.id }}"
+        routerLinkActive="active"
+      >
+        <span>{{ conversation.name }}</span>
+        <div class="right aligned">
+          <i class="icon trash alternate custom-icon" (click)="onTrashIconClick($event, conversation.id)"></i>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<hr>
+<div class="userInfo">
+    <div> 
+        <img class="ui mini image" src="https://react.semantic-ui.com/images/avatar/large/elliot.jpg" *ngIf="responseData?.accountType === 'Lawyer'" (click)="goToProfile()">
+<img class="ui mini image" src="https://legacytransportationloscabos.com/resources/node_modules/semantic-ui/examples/assets/images/avatar/tom.jpg" *ngIf="responseData?.accountType === 'Judge'" (click)="goToProfile()">
+
+    <h2>{{responseData?.username}}
+    </h2>
+</div>
+
+   <div class="signOut"> 
+    <i class="sign out alternate icon signout-icon" (click)="logout()">
+        <h2> 
+        </h2>
+    </i> Logout
+</div>
+   
+</div>
+
+</div>
+<div class="pusher">
+  <router-outlet></router-outlet>
+  <app-chat-window> </app-chat-window>
+</div>
+</div>
+

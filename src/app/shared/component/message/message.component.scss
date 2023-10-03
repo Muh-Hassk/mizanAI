@@ -1,0 +1,24 @@
+.message{
+    width: 100%;
+    padding: 20px;
+    font-size: 18px;
+    &.user {
+        background-color:#0a1f27;
+    }
+    .message-content{
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        .avatar{
+            width: 30px;
+            img {
+               
+            }
+          
+            .text{
+
+            }
+        }
+    }
+}
