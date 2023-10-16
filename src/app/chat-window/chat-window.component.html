@@ -2,14 +2,13 @@
   <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
 </nav>
 <div class="messages">
-  <ng-container 
-  >
-  <app-message 
-  *ngFor="let message of messages"
-  [role]="message.role"
-  [content]="message.content">
-</app-message>
-</ng-container>
+  
+    <app-message
+      *ngFor="let message of messages"
+      [role]="message.role"
+      [content]="message.content">
+    </app-message>
+
 </div>
 <div class="chat-input">
   <input

@@ -27,8 +27,16 @@ export class ApiService {
     );
   }
   getConversation(id: string): Observable<Conversation> {
-    return this.http.get<Conversation>(`http://localhost:8000/api/get_conversation/${id}`, { withCredentials: true });
+    console.log('Called: GetConversation');
+    return this.http.get<Conversation>(`http://localhost:8000/api/get_conversation/${id}`, { withCredentials: true }).pipe(
+      catchError((error: any) => {
+        // Handle the error appropriately
+        console.error('An error occurred:', error);
+        throw error; // Rethrow it back to keep the observable in an error state
+      })
+    );
   }
+  
   
   addMessage(message:Message, ConversationId:string) {
     const body = {
