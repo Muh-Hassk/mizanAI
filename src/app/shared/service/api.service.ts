@@ -42,7 +42,7 @@ export class ApiService {
     const body = {
       content: message.content // Replace message.content with your actual message content
     };
-    return this.http.post(`http://localhost:8000/api/send_message/${ConversationId}/`, body);
+    return this.http.post(`http://localhost:8000/api/send_message/${ConversationId}/`, body, { withCredentials: true });
   }
   
 //  createConversation(message:Message) {

@@ -50,6 +50,28 @@ export class ChatWindowComponent {
     });
    
   }
+
+  sendMessage(message: string) {
+    this.route.paramMap.subscribe(params => {
+      const conversationId = params.get('id'); // Assuming 'id' is the parameter name in your route
+      if (conversationId && this.messages) {
+        const newMessage: Message = {
+          role: 'user', // Assuming a default role
+          content: message,
+        };
+    
+        this.messages.push(newMessage);
+        this.api.addMessage(newMessage, conversationId).subscribe(
+          response => {
+            // Handle the response if necessary
+          },
+          error => {
+            // Handle the error if necessary
+          }
+        );
+      }
+    });
+  }
     
    
   

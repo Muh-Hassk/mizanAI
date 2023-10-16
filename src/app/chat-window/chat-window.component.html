@@ -15,7 +15,8 @@
     type="text"
     placeholder="Type Your Message..."
     [(ngModel)]="message"
+    (keyup.enter)="sendMessage(message)"
     
   />
- <i class="paper plane outline icon"></i>
+ <i class="paper plane outline icon" (click)="sendMessage(message)"></i>
 </div>
