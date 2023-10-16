@@ -9,19 +9,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./chat-sidebar.component.scss']
 })
 export class ChatSidebarComponent {
-  conversations: Conversation[] = [];
+  conversations: Conversation[] | null = null;
   Auth!: boolean;
   responseData: UserData | null = null; // Use the UserData interface
   ngOnInit() {
     this.api.UserisAuth().subscribe(Auth => {
-      console.log(Auth);
       this.Auth = Auth;
     });
 
     this.api.userData().subscribe(UserData => {
       this.responseData = UserData;
     });
-  }
+
+    this.api.getConversations().subscribe(
+      (data: Conversation[]) => {
+        console.log(data);
+        this.conversations = data;
+        console.log(this.conversations);
+      },
+      (error) => {
+        console.log("Data not Available", error);
+      }
+    );  }
   
   logout() {
     this.api.logout();
@@ -36,25 +45,44 @@ export class ChatSidebarComponent {
     private router: Router
   ) 
     {
-   this.conversations = this.api.getConversations();
-   console.log(this.conversations);
   }
 
-  onTrashIconClick(event: Event, conversationId: string) {
-    // Prevent the click event from propagating to parent elements
-    event.stopPropagation();
-    this.api.deleteConversation(conversationId);
-    
-    // Perform actions when the Trash icon is clicked
-    // You can access the conversationId here and take appropriate actions
-    console.log(`Trash icon clicked for conversation with ID: ${conversationId}`);
-    // Call your desired function or logic here
-    console.log(this.api.getConversations());
-    this.conversations = this.api.getConversations();
-    this.router.navigate(['/new']);
-  }
+ 
+
+// ...
+
+onTrashIconClick(event: Event, conversationId: number) {
+  event.stopPropagation();
+  this.api.deleteConversation(conversationId).subscribe(
+    (response) => {
+      console.log('Conversation deleted successfully:', response);
+      this.loadConversations(); // Call the method to reload the conversation list
+    },
+    (error) => {
+      console.error('An error occurred while deleting the conversation:', error);
+      // Handle the error as necessary
+    }
+  );
+
+  console.log(`Trash icon clicked for conversation with ID: ${conversationId}`);
+  this.router.navigate(['/new']);
+}
+
+loadConversations() {
+  this.api.getConversations().subscribe(
+    (conversations) => {
+      this.conversations = conversations; // Assuming this is where you store your conversation data
+    },
+    (error) => {
+      console.error('An error occurred while loading conversations:', error);
+      // Handle the error as necessary
+    }
+  );
+}
+
 
   goToProfile() {
     this.router.navigate(['/profile']);
   } 
+
 }

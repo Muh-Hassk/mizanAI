@@ -16,7 +16,6 @@ export class ChatWindowComponent {
   constructor(private router: ActivatedRoute, private api: ApiService, private route: Router) {
     this.router.params.subscribe(params => {
     this.id = params['id'];
-    this.messages = this.api.getConversation(this.id)?.messages || [];
     console.log(this.id, this.messages);
 
    
@@ -30,27 +29,27 @@ export class ChatWindowComponent {
     inputElement.style.height = inputElement.scrollHeight + 'px';
   }
 
-  sendMessage() {
-    if(this.message !== ''&& this.id !== undefined) {
-      this.api.addMessage(this.id,
-        {
-          role: 'user',
-          content: this.message,
-        }
-        );
-        this.message = '';
-    }
-    else if(this.message !== ''&& this.id === undefined) {
-     
-        // Create a new chat with a default message
-        const newChatMessage: Message = { role:'user', content: this.message };
-    
-        const newID = this.api.createConversation(newChatMessage)
-          // After the chat is created by the API, navigate to its route
-          this.route.navigate(['/chats',newID]);
-      }
-      
-    }
-    }
+  //sendMessage() {
+    //if (this.message !== '' && this.id !== undefined) {
+      //this.api.addMessage(this.id {
+        //role: 'user',
+        //content: this.message,
+     // }).subscribe(response => {
+        // Handle the response if necessary
+      //}, error => {
+        // Handle the error if necessary
+     // });
+      //this.message = '';
+  //  } else if (this.message !== '' && this.id === undefined) {
+     // const newChatMessage: Message = { role: 'user', content: this.message };
+     // this.api.createConversation(newChatMessage).subscribe(newID => {
+        // After the chat is created by the API, navigate to its route
+       // this.route.navigate(['/chats', newID]);
+      //}, error => {
+        // Handle the error if necessary
+     // });
+    //}
+  //}
   
+}
 
