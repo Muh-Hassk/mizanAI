@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { ApiService } from '../shared/service/api.service';
 import { Conversation, UserData } from '../shared/interface/conversation';
 import { Message } from '../shared/interface/message';
@@ -9,10 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./chat-sidebar.component.scss']
 })
 export class ChatSidebarComponent {
+  myEvent: EventEmitter<any> = new EventEmitter();
+
+
   conversations: Conversation[] | null = null;
   Auth!: boolean;
   responseData: UserData | null = null; // Use the UserData interface
   ngOnInit() {
+    this.myEvent.subscribe(() => {
+      // Handle the event here, possibly by reloading conversations
+      this.loadConversations(); // Call the method to reload conversations
+    });
     this.api.UserisAuth().subscribe(Auth => {
       this.Auth = Auth;
     });
@@ -42,7 +49,8 @@ export class ChatSidebarComponent {
   constructor
   ( 
     private api: ApiService,
-    private router: Router
+    private router: Router,
+    
   ) 
     {
   }

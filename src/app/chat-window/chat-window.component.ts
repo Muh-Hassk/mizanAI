@@ -3,6 +3,8 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ApiService } from '../shared/service/api.service';
 import { Message } from '../shared/interface/message';
 import { Conversation, UserData } from '../shared/interface/conversation';
+import {ChatSidebarComponent} from '../chat-sidebar/chat-sidebar.component';
+
 
 @Component({
   selector: 'app-chat-window',
@@ -10,7 +12,7 @@ import { Conversation, UserData } from '../shared/interface/conversation';
   styleUrls: ['./chat-window.component.scss']
 })
 export class ChatWindowComponent {
-  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) {    
+  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router, private sidebarService: ChatSidebarComponent) {    
   }
   
   Auth!: boolean;
@@ -54,25 +56,50 @@ export class ChatWindowComponent {
   sendMessage(message: string) {
     this.route.paramMap.subscribe(params => {
       const conversationId = params.get('id'); // Assuming 'id' is the parameter name in your route
-      if (conversationId && this.messages) {
-        const newMessage: Message = {
-          role: 'user', // Assuming a default role
-          content: message,
-        };
-    
-        this.messages.push(newMessage);
-        this.api.addMessage(newMessage, conversationId).subscribe(
-          response => {
-            // Handle the response if necessary
-          },
-          error => {
-            // Handle the error if necessary
-          }
-        );
+      console.log(conversationId);
+      
+      if (message.length >= 1) {
+        if (conversationId && this.messages) {
+          const newMessage: Message = {
+            role: 'user', // Assuming a default role
+            content: message,
+          };
+
+          this.messages.push(newMessage);
+          this.api.addMessage(newMessage, conversationId).subscribe(
+            response => {
+              // Handle the response if necessary
+            },
+            error => {
+              // Handle the error if necessary
+            }
+          );
+        } else if (conversationId == null) {
+          // Handle the case when the URL has /new
+          const newMessage: Message = {
+            role: 'user', // Assuming a default role
+            content: message,
+          };
+          this.api.addMessage(newMessage, 'new').subscribe(
+            response => {
+              this.ReloadConversations()
+              const L = response
+              this.router.navigate(['/chats', L.toString()]); 
+              },
+            error => {
+              // Handle the error if necessary
+            }
+          );
+        }
       }
     });
-  }
-    
+}
+
+
+
+ReloadConversations() {
+  this.sidebarService.myEvent.emit();
+}
    
   
 
