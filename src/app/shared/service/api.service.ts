@@ -44,6 +44,14 @@ export class ApiService {
     };
     return this.http.post(`http://localhost:8000/api/send_message/${ConversationId}/`, body, { withCredentials: true });
   }
+
+  AiResponse(userText:string, conversationId:string) {
+    const body = {
+      content: userText // Replace message.content with your actual message content
+    };
+    return this.http.post(`http://localhost:8000/api/AIresponse/${conversationId}/`, body, { withCredentials: true });
+  }
+  
   
 //  createConversation(message:Message) {
   //  let id = (this.conversations.length + 1).toString()

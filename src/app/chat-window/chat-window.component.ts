@@ -68,7 +68,7 @@ export class ChatWindowComponent {
           this.messages.push(newMessage);
           this.api.addMessage(newMessage, conversationId).subscribe(
             response => {
-              // Handle the response if necessary
+             this.getResponse(message, conversationId);
             },
             error => {
               // Handle the error if necessary
@@ -94,7 +94,16 @@ export class ChatWindowComponent {
       }
     });
 }
+getResponse(text: string, conversationId: string) {
+  this.api.AiResponse(text, conversationId).subscribe(
+    response => {
+     },
+     error => {
+       // Handle the error if necessary
+     }
+   );
 
+}
 
 
 ReloadConversations() {
