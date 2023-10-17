@@ -54,8 +54,7 @@ export class ChatWindowComponent {
   }
 
   sendMessage(message: string) {
-    this.route.paramMap.subscribe(params => {
-      const conversationId = params.get('id'); // Assuming 'id' is the parameter name in your route
+    const conversationId = this.route.snapshot.paramMap.get('id');
       console.log(conversationId);
       
       if (message.length >= 1) {
@@ -64,7 +63,6 @@ export class ChatWindowComponent {
             role: 'user', // Assuming a default role
             content: message,
           };
-
           this.messages.push(newMessage);
           this.api.addMessage(newMessage, conversationId).subscribe(
             response => {
@@ -92,11 +90,13 @@ export class ChatWindowComponent {
           );
         }
       }
-    });
 }
+
 getResponse(text: string, conversationId: string) {
   this.api.AiResponse(text, conversationId).subscribe(
     response => {
+
+      console.log("This is Ai Response "+response);
      },
      error => {
        // Handle the error if necessary
