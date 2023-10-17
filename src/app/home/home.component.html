@@ -11,6 +11,7 @@
         
     </nav>
 
+    <section class="hidden"> 
     <div class="warpper">
         <div class="cols cols0">
             <span class="topline">{{"Hello" | translate}}</span>
@@ -30,6 +31,9 @@
             </div>
         </div>
     </div>
+</section>
+
+<section class="hidden"> 
     <div class="warpper"  id = "behind">
         <div class="cols1 cols0">
             <span class="topline1">{{"abtMizan" | translate}}<b>.</b></span>
@@ -43,9 +47,14 @@
             </div>
         </div>
     </div>
+</section>
+
     </div>
+
+    <section class="hidden"> 
     <h4 class="textColored">Mizan's Deveolpment Team</h4>
-    <div class="maincontainer" id = maincontainer>
+    
+        <div class="maincontainer" id = maincontainer>
         <div class="thecard" *ngFor="let data of membersInfo">
   
           <div class="thefront"><h1> {{data.name}} </h1><h2>{{data.role}}</h2>
@@ -62,6 +71,27 @@
         </div>
       </div>
 </div>
+</section>
+
+<script>
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        console.log(entry)
+        if(entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+        else {
+            entry.target.classList.remove('show');
+        }
+    });
+});
+
+var hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el) => observer.observe(el));
+</script> 
+
+
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"> </script>
 <script>
     var typingEffect = new Typed(".multiText" , {
@@ -69,5 +99,6 @@
         loop: true
     })
 </script>
+
 
 </div>

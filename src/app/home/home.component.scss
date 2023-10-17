@@ -8,6 +8,10 @@
 body {
   // overflow: hidden;
   background-color: #f3f5f8;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  margin: 0;
 }
 .bigCont {
   background-color: #f3f5f8;
@@ -388,3 +392,13 @@ p {
     font-size: 30px;
   }
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+section {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  min-height: 100vh;
+}
+
