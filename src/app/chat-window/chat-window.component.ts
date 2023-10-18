@@ -18,10 +18,15 @@ export class ChatWindowComponent {
 
   
   Auth!: boolean;
+  isSending: boolean = false; // Variable to keep track of the sending state
   responseData: UserData | null = null; // Use the UserData interface
   messages: Message[] | null = null; // Use the Message interface
   messageInput:string ='';
   conversations: Conversation[] | null = null;
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   ngOnInit() {
     this.api.UserisAuth().subscribe(Auth => {
@@ -55,9 +60,11 @@ export class ChatWindowComponent {
    
   }
 
-  sendMessage(message: string) {
+  async sendMessage(message: string) {
     const conversationId = this.route.snapshot.paramMap.get('id');
+    
       console.log(conversationId);
+      this.isSending = true; // Disable the input field while sending the message
       
       if (message.length >= 1) {
         this.messageInput = '';
@@ -67,6 +74,7 @@ export class ChatWindowComponent {
             content: message,
           };
           this.messages.push(newMessage);
+          await this.delay(4000)
           this.api.addMessage(newMessage, conversationId).subscribe(
             response => {
              this.getResponse(message, conversationId);
@@ -96,6 +104,8 @@ export class ChatWindowComponent {
         }
       }
       this.scrollToBottom();
+      this.isSending = false; // Disable the input field while sending the message
+
 }
 
 scrollToBottom(): void {
@@ -109,8 +119,12 @@ ngAfterViewChecked() {
 getResponse(text: string, conversationId: string) {
   this.api.AiResponse(text, conversationId).subscribe(
     response => {
-
       console.log("This is Ai Response "+response);
+      const AiMessage: Message = {
+        role: 'system', // Assuming a default role
+        content: response.toString(),
+      };
+      this.messages?.push(AiMessage)
      },
      error => {
        // Handle the error if necessary
