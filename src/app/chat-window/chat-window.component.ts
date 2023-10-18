@@ -60,12 +60,10 @@ export class ChatWindowComponent {
    
   }
 
-  async sendMessage(message: string) {
+   sendMessage(message: string) {
     const conversationId = this.route.snapshot.paramMap.get('id');
-    
       console.log(conversationId);
       this.isSending = true; // Disable the input field while sending the message
-      
       if (message.length >= 1) {
         this.messageInput = '';
         if (conversationId && this.messages) {
@@ -74,7 +72,6 @@ export class ChatWindowComponent {
             content: message,
           };
           this.messages.push(newMessage);
-          await this.delay(4000)
           this.api.addMessage(newMessage, conversationId).subscribe(
             response => {
              this.getResponse(message, conversationId);
@@ -91,11 +88,10 @@ export class ChatWindowComponent {
           };
           this.api.addMessage(newMessage, 'new').subscribe(
             response => {
-
               this.ReloadConversations()
               const L = response
-              this.getResponse(message, L.toString())
               this.router.navigate(['/chats', L.toString()]); 
+              this.getResponse(message, L.toString())
               },
             error => {
               // Handle the error if necessary
@@ -104,7 +100,6 @@ export class ChatWindowComponent {
         }
       }
       this.scrollToBottom();
-      this.isSending = false; // Disable the input field while sending the message
 
 }
 
@@ -116,7 +111,8 @@ scrollToBottom(): void {
 ngAfterViewChecked() {
   this.scrollToBottom();
 }
-getResponse(text: string, conversationId: string) {
+async getResponse(text: string, conversationId: string) {
+  await this.delay(4000)
   this.api.AiResponse(text, conversationId).subscribe(
     response => {
       console.log("This is Ai Response "+response);
@@ -130,7 +126,7 @@ getResponse(text: string, conversationId: string) {
        // Handle the error if necessary
      }
    );
-
+   this.isSending = false; // Disable the input field while sending the message
 }
 
 
