@@ -64,15 +64,14 @@ onTrashIconClick(event: Event, conversationId: number) {
   this.api.deleteConversation(conversationId).subscribe(
     (response) => {
       console.log('Conversation deleted successfully:', response);
-      this.loadConversations(); // Call the method to reload the conversation list
     },
     (error) => {
       console.error('An error occurred while deleting the conversation:', error);
       // Handle the error as necessary
     }
   );
-
   console.log(`Trash icon clicked for conversation with ID: ${conversationId}`);
+  this.loadConversations(); // Call the method to reload the conversation list
   this.router.navigate(['/new']);
 }
 
