@@ -1,7 +1,7 @@
 <nav class="init">
   <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
 </nav>
-<div class="messages">
+<div class="messages" #scrollMe>
   
     <app-message
       *ngFor="let message of messages"
@@ -14,9 +14,9 @@
   <input
     type="text"
     placeholder="Send Your Message to Mizan."
-    [(ngModel)]="message"
-    (keyup.enter)="sendMessage(message)"
+    [(ngModel)]="messageInput"
+    (keyup.enter)="sendMessage(messageInput)"
     
   />
- <i class="paper plane outline icon" (click)="sendMessage(message)"></i>
+ <i class="paper plane outline icon" (click)="sendMessage(messageInput)"></i>
 </div>
