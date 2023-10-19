@@ -27,7 +27,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { ChatWindowComponent } from './chat-window/chat-window.component';
 import { MessageComponent } from './shared/component/message/message.component';
-import { ConversationComponent } from './shared/component/conversation/conversation.component';
 import { ChatSidebarComponent } from './chat-sidebar/chat-sidebar.component';
 import { UnauthoraizedPageComponent } from './unauthoraized-page/unauthoraized-page.component';
 
@@ -46,7 +45,6 @@ import { UnauthoraizedPageComponent } from './unauthoraized-page/unauthoraized-p
         ProfileComponent,
         ChatWindowComponent,
         MessageComponent,
-        ConversationComponent,
         ChatSidebarComponent,
         UnauthoraizedPageComponent,
 
