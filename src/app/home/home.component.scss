@@ -6,7 +6,7 @@
   font-family: "poppins", sans-serif;
 }
 html {
-  background-color: #202124;
+  background-color: #181818;
 
 }
 body {
@@ -126,6 +126,9 @@ body {
   }
   .thecard {
     margin-bottom: 25px;
+  }
+  .bigCont {
+      height: 3050px;
   }
 }
 .links a:hover {
@@ -347,6 +350,28 @@ p {
     right: 55px;
   }
 }
+@media (max-width: 918px) {
+  .topline1 {
+    font-size: 40px;
+    letter-spacing: 5px;
+      }
+}
+@media (max-width: 792px) {
+  .topline1 {
+    font-size: 30px;
+    letter-spacing: 4px;
+      }
+}
+
+@media (max-width: 630px) {
+  .topline1 {
+    font-size: 27px;
+    letter-spacing: 5px;
+      }
+}
+
+
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   /* Adjust styles for smaller screens here */
@@ -390,9 +415,7 @@ p {
     font-size: 20px;
   }
   
-  .topline1 {
-    font-size: 30px;
-  }
+ 
 }
 
 
