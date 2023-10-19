@@ -1,73 +1,103 @@
 <div class="bigCont">
+  <nav>
+    <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
+    <ul class="navItems">
+      <li>
+        <a routerLink="">{{ "home" | translate }}</a>
+      </li>
+      <li>
+        <a href="#behind">{{ "about" | translate }}</a>
+      </li>
+      <li>
+        <a href="#maincontainer">{{ "reachUs" | translate }}</a>
+      </li>
+    </ul>
+  </nav>
 
-<div class="container">
-    <nav>
-        <div class="logo">{{"mizan" | translate}} <b>.</b></div>
-        <ul class="navItems">
-            <li><a routerLink="">{{"home" | translate}}</a></li>
-            <li><a href="#behind">{{"about" | translate}}</a></li>
-            <li><a href="#maincontainer">{{"reachUs" | translate}}</a></li>
-        </ul>
-        
-    </nav>
-
+  <section class="hidden">
     <div class="warpper">
-        <div class="cols cols0">
-            <span class="topline">{{"Hello" | translate}}</span>
-            <h1>I'm <span class="multiText"></span></h1>
-            <p>
-                Web Page AI Model To Provide Judjical Assisant to Lawyers, Judges, People..
-            </p>
-            <div class="btns">
-                <button class="buttons" routerLink="/login">{{"Login" | translate}}</button>
-                <button class="buttons"routerLink="/signup">{{"Signup" | translate}}</button>
-            </div>
-        </div>
-        <div class="cols cols1">
-            <div class="imgbox">
-              
-                <img  src="assets/29110.png">
-            </div>
-        </div>
-    </div>
-    <div class="warpper"  id = "behind">
-        <div class="cols1 cols0">
-            <span class="topline1">{{"abtMizan" | translate}}<b>.</b></span>
-            <p>
-                {{"abtMizanText" | translate}}            </p>
-        </div>
-        <div class="cols1 cols1">
-            <div class="imgbox2">
-              
-                <img  src="assets/OM4EY5-W4Dv8fKty.png">
-            </div>
-        </div>
-    </div>
-    </div>
-    <h4 class="textColored">Mizan's Deveolpment Team</h4>
-    <div class="maincontainer" id = maincontainer>
-        <div class="thecard" *ngFor="let data of membersInfo">
-  
-          <div class="thefront"><h1> {{data.name}} </h1><h2>{{data.role}}</h2>
-            <h4>{{data.inroleof}}</h4>
-        </div>
-
-  
-          <div class="theback"><h1>Reach Me on.</h1>
-            <div class="links">
-                <a href="{{data.linkedin}}"><i class="fab fa-linkedin"> </i></a>
-                <a href="mailto:{{ data.email }}"><i class="fa-solid fa-at"></i></a>
-                <a href="tel:{{ data.phone }}"><i class="fa-solid fa-phone"></i></a>
-            </div>
+      <div class="cols cols0">
+        <span class="topline">{{ "Hello" | translate }}</span>
+        <h1>I'm <span class="multiText"></span></h1>
+        <p>
+          Web Page AI Model To Provide Judjical Assisant to Lawyers, Judges,
+          People..
+        </p>
+        <div class="btns">
+          <button class="buttons" routerLink="/login">
+            {{ "Login" | translate }}
+          </button>
+          <button class="buttons" routerLink="/signup">
+            {{ "Signup" | translate }}
+          </button>
         </div>
       </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"> </script>
-<script>
-    var typingEffect = new Typed(".multiText" , {
-        strings : ["Judge" , "Lawyer" , "AI Model","Assistant Tool"],
-        loop: true
-    })
-</script>
+      <div class="cols cols1">
+        <div class="imgbox">
+          <img src="assets/29110.png" />
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="hidden">
+    <div class="warpper" id="behind">
+      <div class="cols1 cols0">
+        <span class="topline1">{{ "abtMizan" | translate }}<b>.</b></span>
+        <p>
+          {{ "abtMizanText" | translate }}
+        </p>
+      </div>
+      <div class="cols1 cols1">
+        <div class="imgbox2">
+          <img src="assets/OM4EY5-W4Dv8fKty.png" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h4 class="textColored">Mizan's Deveolpment Team</h4>
+
+  <div class="maincontainer" id="maincontainer">
+    <div class="thecard" *ngFor="let data of membersInfo">
+      <div class="thefront">
+        <h1>{{ data.name }}</h1>
+        <h2>{{ data.role }}</h2>
+        <h4>{{ data.inroleof }}</h4>
+      </div>
+
+      <div class="theback">
+        <h1>Reach Me on.</h1>
+        <div class="links">
+          <a href="{{ data.linkedin }}"><i class="fab fa-linkedin"> </i></a>
+          <a href="mailto:{{ data.email }}"><i class="fa-solid fa-at"></i></a>
+          <a href="tel:{{ data.phone }}"><i class="fa-solid fa-phone"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log(entry);
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        } else {
+          entry.target.classList.remove("show");
+        }
+      });
+    });
+
+    var hiddenElements = document.querySelectorAll(".hidden");
+    hiddenElements.forEach((el) => observer.observe(el));
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    var typingEffect = new Typed(".multiText", {
+      strings: ["Judge", "Lawyer", "AI Model", "Assistant Tool"],
+      loop: true,
+    });
+  </script>
 </div>

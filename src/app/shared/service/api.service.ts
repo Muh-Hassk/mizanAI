@@ -11,44 +11,57 @@ export class ApiService {
 
   responseData: UserData | null = null; // Use the UserData interface
   constructor(private http: HttpClient) {}
-  conversations: Conversation[] = [
-    {
-    id: '1',
-    name: 'John',
-    messages: [
-        {"role":"user", "content": "margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bott"},
-        {"role":"system", "content": "Hey i'm Mizan AI how can i help you today?"},
-        {"role":"user", "content": " are you used for?"},
-        {"role":"system", "content": "margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottom: 50px; /* Initial margin between input and messages */ margin-bottns the Legal Case to Help judges Decide the last decision"}
-    ]
-    },
-    {
-      id: '2',
-      name: 'Mohammed',
-      messages: [
-          {"role":"user", "content": "hi"},
-          {"role":"system", "content": "hi i'm Mizan AI how can i help you today?"},
-          {"role":"user", "content": "who use you?"},
-          {"role":"system", "content": "Judges, Lawyers, And more"}
-      ]
-      },
-  ]
-  getConversations() {
-    return this.conversations;
+  conversations: Conversation[] | null = null
+  getConversations(): Observable<Conversation[]> {
+    console.log('Called: GetConversations');
+    return this.http.get<Conversation[]>('http://localhost:8000/api/get_conversations', { withCredentials: true }).pipe(
+      map((res: Conversation[]) => {
+        this.conversations = res;
+        return res;
+      }),
+      catchError((error: any) => {
+        // Handle the error appropriately
+        console.error('An error occurred:', error);
+        throw error; // Rethrow it back to keep the observable in an error state
+      })
+    );
   }
-  getConversation(id:string) {
-    return this.conversations.find(conversation => conversation.id === id);
+  getConversation(id: string): Observable<Conversation> {
+    console.log('Called: GetConversation');
+    return this.http.get<Conversation>(`http://localhost:8000/api/get_conversation/${id}`, { withCredentials: true }).pipe(
+      catchError((error: any) => {
+        // Handle the error appropriately
+        console.error('An error occurred:', error);
+        throw error; // Rethrow it back to keep the observable in an error state
+      })
+    );
   }
-  addMessage(id:string, message:Message){
-    this.conversations.filter(conversation => conversation.id === id)[0].messages.push(message)
+  
+  
+  addMessage(message:Message, ConversationId:string) {
+    const body = {
+      content: message.content // Replace message.content with your actual message content
+    };
+    return this.http.post(`http://localhost:8000/api/send_message/${ConversationId}/`, body, { withCredentials: true });
   }
-  createConversation(message:Message) {
-    let id = (this.conversations.length + 1).toString()
-    this.conversations.push({id, name: message.content, messages: [message]})
-    return id;
+
+  AiResponse(userText:string, conversationId:string) {
+    const body = {
+      content: userText // Replace message.content with your actual message content
+    };
+    return this.http.post(`http://localhost:8000/api/AIresponse/${conversationId}/`, body, { withCredentials: true });
   }
-  deleteConversation(conversationId: string) {
-    this.conversations = this.conversations.filter(conversation => conversation.id !== conversationId);
+  
+  
+//  createConversation(message:Message) {
+  //  let id = (this.conversations.length + 1).toString()
+    //this.conversations.push({id, name: message.content, messages: [message]})
+    //return id;
+  //}
+
+  deleteConversation(conversationId: number): Observable<any> {
+    console.log("function Delete Being Called ");
+    return this.http.delete(`http://localhost:8000/api/delete_conversation/${conversationId}/`, { withCredentials: true });
   }
 
 UserisAuth(): Observable<boolean> {

@@ -8,33 +8,26 @@
 }
 
 body {
-	background-color: #f3f5f8;
+	background-color: #202124;
 }
-.bigCont {
-	background-color: #f3f5f8;
-}
-.container {
-	width: 100%;
-	min-height: 100vh;
-	background-color: #f3f5f8;
-  }
+
+
   
   nav {
 	display: flex;
 	width: 100%;
-	justify-content: space-between;
+	justify-content: baseline;
 	height: 80px;
 	line-height: 80px;
 	z-index: 111;
-	margin-bottom: 30px;
-	background-color: #f3f5f8;
+	background-color: #202124;
   }
   
   .logo {
 	display: flex;
 	font-size: 40px;
 	font-weight: 800;
-	color: #3d535f;
+	color: #c2c2c2;
 	letter-spacing: 3px;
 	cursor: pointer;
 	text-transform: uppercase;
@@ -48,23 +41,23 @@ body {
   
   .navItems {
 	display: flex;
-	margin-right: 425px;
 	padding: 5px;
+  justify-content: center;
   }
   
   .navItems li {
 	list-style: none;
 	margin: 0 15px;
-	margin-left: 360px;
+	margin-left: 415px;
   }
   
   .navItems li a {
 	font-size: 25px;
-	color: #3d535f;
+	color: #c2c2c2;
 	letter-spacing: 3px;
 	text-decoration: none;
 	text-transform: capitalize;
-	font-weight: 200;
+	font-weight: 700;
   }
   
   .navItems li:hover a{
@@ -75,15 +68,18 @@ body {
     .logo {
       font-size: 30px;
     }
-    .navItems {
-      margin-right: 250px;
-      }
+
     .navItems li a {
       font-size: 20px;
     }
     .navItems li  {
-     margin-left: 200px;
-    }
+      margin-left: 200px;
+        }
+  }
+  @media (max-width: 850px) {
+    .navItems li  {
+      margin-left: 175px;
+        }
   }
   
   @media (max-width: 600px) {
@@ -91,14 +87,11 @@ body {
     .logo {
       font-size: 22px;
     }
-    .navItems {
-      margin-right: 200px;    
-      }
     .navItems li a {
-      font-size: 15px;
+      font-size: 18px;
     }
     .navItems li  {
-     margin-left: 20px;
+     margin-left: 100px;
     }
   }
   .custom-button:hover {
@@ -120,13 +113,13 @@ body
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #000;
+  background: #202124;
 }
 section 
 {
   position: absolute;
   width: 100vw;
-  height: 85vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -310,4 +303,6 @@ input[type="submit"]:active
 	color: #7f00ff !important;
 	font-weight: 600;
 }
-
+.content h2 {
+  text-align: center;
+}

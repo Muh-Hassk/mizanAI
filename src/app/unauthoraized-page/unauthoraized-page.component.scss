@@ -8,15 +8,15 @@
 }
 
 body {
-	background-color: #f3f5f8;
+	background-color: #202124;
 }
 .bigCont {
-	background-color: #f3f5f8;
+	background-color: #202124;
 }
 .containerx {
 	width: 100%;
 	min-height: 100vh;
-	background-color: #f3f5f8;
+	background-color: #202124;
   }
   
   .init {
@@ -26,8 +26,7 @@ body {
 	height: 80px;
 	line-height: 80px;
 	z-index: 111;
-	margin-bottom: 30px;
-	background-color: #f3f5f8;
+	background-color: #202124;
   }
   .a {
     
@@ -38,14 +37,14 @@ body {
         line-height: 80px;
         z-index: 111;
         margin-bottom: 30px;
-        background-color: #f3f5f8;
+        background-color: #202124;
   }
   
   .logo {
 	display: flex;
 	font-size: 40px;
 	font-weight: 800;
-	color: #3d535f;
+	color: #c2c2c2;
 	letter-spacing: 3px;
 	cursor: pointer;
 	text-transform: uppercase;
@@ -75,7 +74,7 @@ body {
   
   .navItems a, .Logout a {
     text-decoration: none;
-    color: #3d535f;
+    color: #c2c2c2;
   }
 
   
@@ -143,7 +142,7 @@ body {
   
   .navItems li a, .Logout li a {
 	font-size: 25px;
-	color: #3d535f;
+	color: #c2c2c2;
 	letter-spacing: 3px;
 	text-decoration: none;
 	text-transform: capitalize;
@@ -166,7 +165,7 @@ body {
   }
 
   .custom-button {
-    color: #3d535f;
+    color: #c2c2c2;
     font-size: 20px;
   }
 
@@ -242,6 +241,7 @@ body {
 	
 	margin: 0px auto;
 	width: auto;
+  background-color: #202124;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -266,47 +266,3 @@ body {
 	}
 }
 
-.containerx {
-	fill: #fafafa;
-} 
-  .Lawyer {
-    background-image: url('https://media.npr.org/assets/img/2022/07/25/bcs_609_gl_1005_0864-rt-d902123a10b2eb10167b5f916a21d3af0664b6c4.jpg');
-    background-size: cover;
-    height: 100px;
-    width: 100px;
-  }
-  .Judge {
-    background-image: url('https://static.wikia.nocookie.net/suits/images/a/a9/Judge_McIntyre_%282x13%29.png');
-    background-size: cover;
-    height: 100px;
-    width: 100px;
-  }
-  .Else {
-    background-image: url('https://hips.hearstapps.com/hmg-prod/images/rob-gronkowski-of-the-new-england-patriots-moves-into-the-news-photo-650618002-1547566506.jpg');
-    background-size: cover;
-    height: 100px;
-    width: 100px;
-  }
-  .mat-mdc-card-title {
-    font-size: 40px;
-    color: #c7c7c7;
-  }
-  .mat-mdc-card-subtitle {
-    font-size: 30px;
-  }
-  .mat-mdc-form-field{
-    width: 300px;
-  }
-
-     .center {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .example-card {
-    
-          width: 100%;
-          align-items: center;
-        }
-       
-        

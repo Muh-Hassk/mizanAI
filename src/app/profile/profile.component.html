@@ -1,50 +1,59 @@
 <div *ngIf="Auth == false">
-    <app-unauthoraized-page> </app-unauthoraized-page>
+  <app-unauthoraized-page> </app-unauthoraized-page>
 </div>
 <div class="bigCont" *ngIf="Auth">
-    <div class="containerx">
-        <nav class="init">
-            <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
-            <ul class="navItems">
-              <li>
-                <a routerLink="/chats">MIZAN AI
-                  <i class="fa-regular fa-message fa-xl" style="color: #3d535f;"></i>
-                </a>
-              </li>
-            </ul>
-            <ul class="Logout"> 
-              <li>
-                <a (click)="logout()"> Logout</a>
-                <button
-                  mat-button
-                  (click)="logout()"
-                  class="custom-button"
-                  aria-label="Button to log out"
-                >
-                  <i (click)="logout()" class="fa-solid fa-right-from-bracket fa-2xl" style="color: #3d535f"></i>
-                </button>
-              </li>
-            </ul>
-          </nav>
+  <div class="containerx">
+    <nav class="init">
+      <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
+      <ul class="navItems">
+        <li>
+          <a routerLink="/chats"
+            >MIZAN AI
+            <i class="fa-regular fa-message fa-xl" style="color: #7f00ff"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="Logout">
+        <li>
+          <a (click)="logout()"> Logout</a>
+          <button
+            mat-button
+            (click)="logout()"
+            class="custom-button"
+            aria-label="Button to log out"
+          >
+            <i
+              (click)="logout()"
+              class="fa-solid fa-right-from-bracket fa-2xl"
+              style="color: #7f00ff"
+            ></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
 
-<div class="center"> 
-          <mat-card class="example-card">
-            <mat-card-header>
-                <div mat-card-avatar [ngClass]="responseData?.accountType"></div>
-                <mat-card-title>{{responseData?.first_name + " "+ responseData?.last_name}}</mat-card-title>
-              <mat-card-subtitle>{{responseData?.accountType}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-form-field class="example-full-width">
-                <mat-label>Username</mat-label>
-                <input matInput disabled value="{{responseData?.username}}">
-              </mat-form-field>
-              <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
-                <input matInput disabled value="{{responseData?.email}}">
-              </mat-form-field>
-              <mat-form-field class="example-full-width">
-                <mat-label>User ID</mat-label>
-                <input matInput disabled value="{{responseData?.id}}">
-              </mat-form-field>
-          </mat-card>
-        </div>
+    <div class="center">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar [ngClass]="responseData?.accountType"></div>
+          <mat-card-title>{{
+            responseData?.first_name + " " + responseData?.last_name
+          }}</mat-card-title>
+          <mat-card-subtitle>{{ responseData?.accountType }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-form-field class="example-full-width">
+          <mat-label>Username</mat-label>
+          <input matInput disabled value="{{ responseData?.username }}" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput disabled value="{{ responseData?.email }}" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>User ID</mat-label>
+          <input matInput disabled value="{{ responseData?.id }}" />
+        </mat-form-field>
+      </mat-card>
+    </div>
+  </div>
+</div>

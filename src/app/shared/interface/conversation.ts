@@ -1,10 +1,17 @@
-import { Message } from "./message";
+export interface Message {
+    id:number;
+    role: string;
+    content: string;
+    timestamp?: number;
+}
 
 export interface Conversation {
-    id:string,
-    name:string,
-    messages: Message[],
+    id: number;
+    name: string;
+    user:number;
+    messages: Message[];
 }
+
 export interface UserData {
     id: number;
     first_name: string;

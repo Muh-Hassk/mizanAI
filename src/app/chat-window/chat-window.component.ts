@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ApiService } from '../shared/service/api.service';
 import { Message } from '../shared/interface/message';
+import { Conversation, UserData } from '../shared/interface/conversation';
+import { ChatSidebarComponent } from '../chat-sidebar/chat-sidebar.component';
+
 
 @Component({
   selector: 'app-chat-window',
@@ -9,48 +12,135 @@ import { Message } from '../shared/interface/message';
   styleUrls: ['./chat-window.component.scss']
 })
 export class ChatWindowComponent {
-  id: string = '';
-  messages: Message[] = [];
-  message:string ='';
-
-  constructor(private router: ActivatedRoute, private api: ApiService, private route: Router) {
-    this.router.params.subscribe(params => {
-    this.id = params['id'];
-    this.messages = this.api.getConversation(this.id)?.messages || [];
-    console.log(this.id, this.messages);
-
-   
-
-    })
+  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router, private sidebarService: ChatSidebarComponent) {    
   }
+  @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
+
+  
+  Auth!: boolean;
+  isSending: boolean = false; // Variable to keep track of the sending state
+  responseData: UserData | null = null; // Use the UserData interface
+  messages: Message[] | null = null; // Use the Message interface
+  messageInput:string ='';
+  conversations: Conversation[] | null = null;
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  ngOnInit() {
+    this.api.UserisAuth().subscribe(Auth => {
+      this.Auth = Auth;
+    });
+
+    this.api.userData().subscribe(UserData => {
+      this.responseData = UserData;
+    });
+
+    this.route.paramMap.subscribe(params => {
+      const conversationId = params.get('id'); // Assuming 'id' is the parameter name in your route
+      if (conversationId) {
+        this.api.getConversation(conversationId).subscribe(
+          (data: Conversation) => {
+            console.log(data);
+            if (!this.conversations) {
+              this.conversations = [data]; // Initialize the array if it's null and add the conversation
+            } else {
+              this.conversations.push(data); // Add the received conversation to the existing array
+            }
+            this.messages = data.messages;
+          },
+          (error) => {
+            console.log("Data not available", error);
+            // Handle the error appropriately
+          }
+        );
+      }
+    });
+   
+  }
+
+   sendMessage(message: string) {
+    const conversationId = this.route.snapshot.paramMap.get('id');
+      console.log(conversationId);
+      this.isSending = true; // Disable the input field while sending the message
+      if (message.length >= 1) {
+        this.messageInput = '';
+        if (conversationId && this.messages) {
+          const newMessage: Message = {
+            role: 'user', // Assuming a default role
+            content: message,
+          };
+          this.messages.push(newMessage);
+          this.api.addMessage(newMessage, conversationId).subscribe(
+            response => {
+             this.getResponse(message, conversationId);
+            },
+            error => {
+              // Handle the error if necessary
+            }
+          );
+        } else if (conversationId == null) {
+          // Handle the case when the URL has /new
+          const newMessage: Message = {
+            role: 'user', // Assuming a default role
+            content: message,
+          };
+          this.api.addMessage(newMessage, 'new').subscribe(
+            response => {
+              this.ReloadConversations()
+              const L = response
+              this.router.navigate(['/chats', L.toString()]); 
+              this.getResponse(message, L.toString())
+              },
+            error => {
+              // Handle the error if necessary
+            }
+          );
+        }
+      }
+      this.scrollToBottom();
+
+}
+
+scrollToBottom(): void {
+  try {
+    this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+  } catch(err) { }
+}
+ngAfterViewChecked() {
+  this.scrollToBottom();
+}
+async getResponse(text: string, conversationId: string) {
+  await this.delay(4000)
+  this.api.AiResponse(text, conversationId).subscribe(
+    response => {
+      console.log("This is Ai Response "+response);
+      const AiMessage: Message = {
+        role: 'system', // Assuming a default role
+        content: response.toString(),
+      };
+      this.messages?.push(AiMessage)
+     },
+     error => {
+       // Handle the error if necessary
+     }
+   );
+   this.isSending = false; // Disable the input field while sending the message
+}
+
+
+ReloadConversations() {
+  this.sidebarService.myEvent.emit();
+}
+   
+  
+
 
   adjustInputHeight(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     inputElement.style.height = 'auto'; // Reset the height to auto to calculate the scrollHeight
     inputElement.style.height = inputElement.scrollHeight + 'px';
-  }
-
-  sendMessage() {
-    if(this.message !== ''&& this.id !== undefined) {
-      this.api.addMessage(this.id,
-        {
-          role: 'user',
-          content: this.message,
-        }
-        );
-        this.message = '';
-    }
-    else if(this.message !== ''&& this.id === undefined) {
-     
-        // Create a new chat with a default message
-        const newChatMessage: Message = { role:'user', content: this.message };
-    
-        const newID = this.api.createConversation(newChatMessage)
-          // After the chat is created by the API, navigate to its route
-          this.route.navigate(['/chats',newID]);
-      }
-      
-    }
-    }
-  
+  }  
+}
 

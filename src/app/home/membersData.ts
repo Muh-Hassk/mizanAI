@@ -18,7 +18,7 @@ export const membersData = [
 {
     name: 'Abdullaziz Ahmed',
     role: 'Member',
-    inroleof: 'Backend Developer',
+    inroleof: 'UI/UX',
     linkedin: 'https://www.linkedin.com/in/muhammed-hass',
     email:'moh.alkhuzaee@gmail.com',
     phone:'+966544243748'

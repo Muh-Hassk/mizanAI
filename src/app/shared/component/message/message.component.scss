@@ -1,24 +1,29 @@
-.message{
+.message {
     width: 100%;
     padding: 20px;
     font-size: 18px;
+    margin-bottom: 10px;
     &.user {
-        background-color:#0a1f27;
+      background-color: #202124;
     }
-    .message-content{
-        width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        .avatar{
-            width: 30px;
-            img {
-               
-            }
-          
-            .text{
-
-            }
+    &.system {
+      background-color: #35363a;
+    }
+    .message-content {
+      width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      word-wrap: break-word; /* Added property to wrap content */
+      display: flex;
+      .avatar {
+        width: 30px;
+        img {
+          /* Add specific styles for the image if needed */
         }
+        .text {
+          /* Add specific styles for the text if needed */
+        }
+      }
     }
-}
+  }
+  

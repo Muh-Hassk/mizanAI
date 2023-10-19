@@ -5,12 +5,20 @@
   box-sizing: border-box;
   font-family: "poppins", sans-serif;
 }
+html {
+  background-color: #202124;
+
+}
 body {
   // overflow: hidden;
-  background-color: #f3f5f8;
+  background-color: #181818;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  margin: 0;
 }
 .bigCont {
-  background-color: #f3f5f8;
+  background-color: #181818;
 }
 .textColored {
     font-size: 35px;
@@ -112,23 +120,12 @@ body {
 }
 
 @media (max-width: 768px) {
+  .maincontainer{
+    display: block;
+    left: 50%;
+  }
   .thecard {
-    width: 150px; /* Further reduce card width for smaller screens */
-    height: 200px; /* Further reduce card height for smaller screens */
-    /* Adjust other styles as needed */
-    margin: 5px; /* Reduce margin around each card further */
-  }
-
-  /* Font size for smaller screens */
-  .thefront h1,
-  .thefront h2,
-  .theback h1 {
-    font-size: 12px; /* Reduce font size for smaller screens */
-  }
-
-  .thefront h4,
-  .theback p {
-    font-size: 10px; /* Reduce font size for smaller screens */
+    margin-bottom: 25px;
   }
 }
 .links a:hover {
@@ -150,14 +147,14 @@ nav {
   height: 80px;
   line-height: 80px;
   z-index: 111;
-  background-color: #f3f5f8;
+  background-color: #202124;
 }
 
 .logo {
   display: flex;
   font-size: 40px;
   font-weight: 800;
-  color: #3d535f;
+  color: #c2c2c2;
   letter-spacing: 3px;
   cursor: pointer;
   text-transform: uppercase;
@@ -171,7 +168,7 @@ b {
 
 .navItems {
   display: flex;
-  margin-right: 185px;
+  margin-right: 300px;
   padding: 5px;
 }
 
@@ -183,7 +180,7 @@ b {
 
 .navItems li a {
   font-size: 25px;
-  color: #3d535f;
+  color: #c2c2c2;
   letter-spacing: 3px;
   text-decoration: none;
   text-transform: capitalize;
@@ -219,7 +216,7 @@ b {
   position: relative;
   font-size: 35px;
   letter-spacing: 5px;
-  color: #3d535f;
+  color: #c2c2c2;
   margin-top: 50px;
 }
 
@@ -236,7 +233,7 @@ h1 {
   display: block;
   font-size: 3.2rem;
   font-weight: 900;
-  color: #3d535f;
+  color: #c2c2c2;
   margin-top: 50px;
   margin-bottom: 40px;
 }
@@ -250,7 +247,7 @@ p {
   display: block;
   width: 90%;
   font-size: 1.2em;
-  color: #3d535f;
+  color: #c2c2c2;
 }
 
 .btns {
@@ -265,8 +262,8 @@ p {
   cursor: pointer;
   font-size: 25px;
   font-weight: 400;
-  color: #fff;
-  background-color: #3d535f;
+  color: #202124;
+  background-color: #c2c2c2;
   padding: 8px 14px;
   margin: 20px 20px;
   letter-spacing: 2px;
@@ -276,6 +273,7 @@ p {
 
 .buttons:hover {
   background-color: #7f00ff;
+  color: #c2c2c2;
 }
 
 .imgbox {
@@ -288,9 +286,9 @@ p {
 .imgbox img {
   position: relative;
   height: 100%;
-  width: calc(130% - 80px);
+  width: calc(140% - 80px);
   top: -80px;
-  right: 14px;
+  right: 35px;
 }
 
 @keyframes animateUser {
@@ -340,7 +338,15 @@ p {
   width: 50%;
   margin-top: 130px;
 }
-
+@media (max-width: 460px) {
+  .imgbox img {
+  width:calc(144% - 80px);
+  }
+  .imgbox2 img {
+    width: calc(155% - 80px);
+    right: 55px;
+  }
+}
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   /* Adjust styles for smaller screens here */
@@ -349,6 +355,10 @@ p {
   }
   .buttons {
     font-size: 15px;
+  }
+  .btns {
+    left: 50px;
+    width: 70%;
   }
 
   b {
@@ -359,10 +369,10 @@ p {
   }
 
   .navItems li a {
-    font-size: 20px;
+    font-size: 18px;
   }
   .navItems li  {
-   margin-left: 40px;
+   margin-left: 25px;
   }
   .topline {
     font-size: 30px;
@@ -379,12 +389,18 @@ p {
   button {
     font-size: 20px;
   }
-
-  .imgbox img {
-    width: calc(110% - 80px);
-  }
-
+  
   .topline1 {
     font-size: 30px;
   }
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+section {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  min-height: 100vh;
+}
+

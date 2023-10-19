@@ -1,22 +1,29 @@
 <nav class="init">
   <div class="logo">{{ "mizan" | translate }} <b>.</b></div>
 </nav>
-<div class="messages">
-  <ng-container 
+<div class="messages" #scrollMe>
+  <app-message
+    *ngFor="let message of messages"
+    [role]="message.role"
+    [content]="message.content"
   >
-  <app-message 
-  *ngFor="let message of messages"
-  [role]="message.role"
-  [content]="message.content">
-</app-message>
-</ng-container>
+  </app-message>
 </div>
 <div class="chat-input">
   <input
     type="text"
-    placeholder="Type Your Message..."
-    [(ngModel)]="message"
-    (keyup.enter)="sendMessage()"
+    [placeholder]="
+      isSending ? 'Waiting For Mizan Respond' : 'Send Your Message to Mizan.'
+    "
+    [(ngModel)]="messageInput"
+    (keyup.enter)="sendMessage(messageInput)"
+    [disabled]="isSending"
+    [ngStyle]="{ color: isSending ? '#808080' : '#ffffff' }"
   />
- <i class="paper plane outline icon" (click)="sendMessage()"></i>
+  <i
+    class="{{
+      isSending ? 'circle notched loading icon' : 'paper plane outline icon'
+    }}"
+    (click)="!isSending && sendMessage(messageInput)"
+  ></i>
 </div>
