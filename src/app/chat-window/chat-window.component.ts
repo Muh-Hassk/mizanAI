@@ -3,7 +3,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ApiService } from '../shared/service/api.service';
 import { Message } from '../shared/interface/message';
 import { Conversation, UserData } from '../shared/interface/conversation';
-import {ChatSidebarComponent} from '../chat-sidebar/chat-sidebar.component';
+import { ChatSidebarComponent } from '../chat-sidebar/chat-sidebar.component';
 
 
 @Component({
@@ -141,29 +141,6 @@ ReloadConversations() {
     const inputElement = event.target as HTMLInputElement;
     inputElement.style.height = 'auto'; // Reset the height to auto to calculate the scrollHeight
     inputElement.style.height = inputElement.scrollHeight + 'px';
-  }
-
-  //sendMessage() {
-    //if (this.message !== '' && this.id !== undefined) {
-      //this.api.addMessage(this.id {
-        //role: 'user',
-        //content: this.message,
-     // }).subscribe(response => {
-        // Handle the response if necessary
-      //}, error => {
-        // Handle the error if necessary
-     // });
-      //this.message = '';
-  //  } else if (this.message !== '' && this.id === undefined) {
-     // const newChatMessage: Message = { role: 'user', content: this.message };
-     // this.api.createConversation(newChatMessage).subscribe(newID => {
-        // After the chat is created by the API, navigate to its route
-       // this.route.navigate(['/chats', newID]);
-      //}, error => {
-        // Handle the error if necessary
-     // });
-    //}
-  //}
-  
+  }  
 }
 
