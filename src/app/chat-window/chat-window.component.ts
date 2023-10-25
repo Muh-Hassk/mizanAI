@@ -59,49 +59,55 @@ export class ChatWindowComponent {
     });
    
   }
-
-   sendMessage(message: string) {
+  sendMessage(message: string) {
     const conversationId = this.route.snapshot.paramMap.get('id');
-      console.log(conversationId);
-      this.isSending = true; // Disable the input field while sending the message
-      if (message.length >= 1) {
-        this.messageInput = '';
-        if (conversationId && this.messages) {
-          const newMessage: Message = {
-            role: 'user', // Assuming a default role
-            content: message,
-          };
-          this.messages.push(newMessage);
-          this.api.addMessage(newMessage, conversationId).subscribe(
-            response => {
-             this.getResponse(message, conversationId);
-            },
-            error => {
-              // Handle the error if necessary
+    console.log(conversationId);
+    this.isSending = true; // Disable the input field while sending the message
+    if (message.length >= 1) {
+      this.messageInput = '';
+      if (conversationId && this.messages) {
+        const newMessage: Message = {
+          role: 'user', // Assuming a default role
+          content: message,
+        };
+        this.messages.push(newMessage);
+        this.api.addMessage(newMessage, conversationId).subscribe(
+          response => {
+            this.getResponse(message, conversationId);
+          },
+          error => {
+            // Handle the error if necessary
+          }
+        );
+      } else if (conversationId == null) {
+        // Handle the case when the URL has /new
+        const newMessage: Message = {
+          role: 'user', // Assuming a default role
+          content: message,
+        };
+        this.api.addMessage(newMessage, 'new').subscribe(
+          async response => {
+            const L = response;
+            const aiResponse = await this.getResponse(message, L.toString());
+            if (aiResponse) {
+              const AiMessage: Message = {
+                role: 'system', // Assuming a default role
+                content: aiResponse,
+              };
+              this.messages?.push(AiMessage);
             }
-          );
-        } else if (conversationId == null) {
-          // Handle the case when the URL has /new
-          const newMessage: Message = {
-            role: 'user', // Assuming a default role
-            content: message,
-          };
-          this.api.addMessage(newMessage, 'new').subscribe(
-            response => {
-              this.ReloadConversations()
-              const L = response
-              this.router.navigate(['/chats', L.toString()]); 
-              this.getResponse(message, L.toString())
-              },
-            error => {
-              // Handle the error if necessary
-            }
-          );
-        }
+            this.ReloadConversations();
+            this.router.navigate(['/chats', L.toString()]); // Navigate after receiving the AI response
+          },
+          error => {
+            // Handle the error if necessary
+          }
+        );
       }
-      this.scrollToBottom();
-
-}
+    }
+    this.scrollToBottom();
+  }
+  
 
 scrollToBottom(): void {
   try {
@@ -111,22 +117,29 @@ scrollToBottom(): void {
 ngAfterViewChecked() {
   this.scrollToBottom();
 }
-async getResponse(text: string, conversationId: string) {
-  await this.delay(4000)
-  this.api.AiResponse(text, conversationId).subscribe(
-    response => {
-      console.log("This is Ai Response "+response);
+async getResponse(text: string, conversationId: string): Promise<string> {
+  try {
+    const response = await this.api.AiResponse(text, conversationId).toPromise();
+    if (response) {
+      console.log("This is Ai Response " + response);
       const AiMessage: Message = {
         role: 'system', // Assuming a default role
         content: response.toString(),
       };
-      this.messages?.push(AiMessage)
-     },
-     error => {
-       // Handle the error if necessary
-     }
-   );
-   this.isSending = false; // Disable the input field while sending the message
+      this.messages?.push(AiMessage);
+      this.isSending = false; // Disable the input field while sending the message
+      return response.toString(); // Return the response as a string
+    } else {
+      // Handle the case when the response is undefined
+      console.error("AI response is undefined");
+      this.isSending = false; // Disable the input field while sending the message
+      return "";
+    }
+  } catch (error) {
+    // Handle the error if necessary
+    this.isSending = false; // Disable the input field while sending the message
+    return "";
+  }
 }
 
 

@@ -147,8 +147,8 @@ export class SignupComponent {
       })
     );
   }
-  myHttpCallEmail(username: string): Observable<boolean> {
-    const apiUrl = `http://localhost:8000/api/checkEmail/${username}/`;
+  myHttpCallEmail(email: string): Observable<boolean> {
+    const apiUrl = `http://localhost:8000/api/checkEmail/${email}/`;
     return this.http.get(apiUrl).pipe(
       tap((response: any) => console.log('API Response:', response)),
       map((response: any) => response.available === true),
