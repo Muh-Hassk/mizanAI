@@ -1,6 +1,6 @@
 export const membersData = [
 {
-    name: 'Mohammed Hassan ',
+    name: 'Mohammed Hassan Al-Khuzaee',
     role: 'Project Leader',
     inroleof: 'Full Stack Developer, NLP integreator',
     linkedin: 'https://www.linkedin.com/in/muhammed-hass',
@@ -13,8 +13,8 @@ export const membersData = [
     role: 'Member',
     inroleof: 'NLP integreator',
     linkedin: 'https://www.linkedin.com/in/muhammed-hass',
-    email:'moh.alkhuzaee@gmail.com',
-    phone:'+966544243748'
+    email:'Aboood1977000@gmail.com',
+    phone:'+966594981398'
 },
 
 {
@@ -23,15 +23,15 @@ export const membersData = [
     inroleof: 'Frontend Developer',
     linkedin: 'https://www.linkedin.com/in/muhammed-hass',
     email:'moh.alkhuzaee@gmail.com',
-    phone:'+966544243748'
+    phone:'+966599125174'
 },
 
 {
     name: 'Abdullaziz Alahmadi',
     role: 'Member',
     inroleof: 'UI/UX',
-    linkedin: 'https://www.linkedin.com/in/muhammed-hass',
+    linkedin: 'https://www.linkedin.com/in/%D9%90abdulaziz-alahmadi-a2401426b/',
     email:'moh.alkhuzaee@gmail.com',
-    phone:'+966544243748'
+    phone:'+966500784408'
 },
 ]
