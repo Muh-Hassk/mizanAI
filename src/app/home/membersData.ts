@@ -18,7 +18,7 @@ export const membersData = [
 },
 
 {
-    name: 'Waleed Saeed ',
+    name: 'Waleed Saeed Alkhuzaee',
     role: 'Member',
     inroleof: 'Frontend Developer',
     linkedin: 'https://www.linkedin.com/in/muhammed-hass',
